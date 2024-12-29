@@ -233,5 +233,8 @@ void load_apps(GtkTreeView *treeview)
 		}
 		closedir(dir);
 	}
-	load_quickaccess();
+	if (showqa)
+	{
+		load_quickaccess();
+	}
 }

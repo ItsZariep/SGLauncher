@@ -51,6 +51,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Window", "hidetitle", 0);
 		g_key_file_set_integer(config, "Window", "hidewindeco", 0);
 		g_key_file_set_integer(config, "Window", "exitwhenunfocused", 0);
+		g_key_file_set_integer(config, "Window", "singleinstance", 0);
 	} 
 	else 
 	{
@@ -59,6 +60,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		showofd = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowofd));
 		showcalc = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowcalc));
 		showda = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowda));
+		showqa = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowqa));
 		useiconview = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wuseiconview));
 		entryonbottom = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wentryonbottom));
 		closeterm = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wcloseterm));
@@ -67,6 +69,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		ignoreonlyshowin = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignoreonlyshowin));
 		ignoreterminal = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignoreterminal));
 		exitwhenunfocused = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wexitwhenunfocused));
+		singleinstance = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wsingleinstance));
 		usecsd = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wusecsd));
 		hidetitle = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(whidetitle));
 		hidewindeco = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(whidewindeco));
@@ -82,6 +85,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Elements", "showofd", showofd);
 		g_key_file_set_integer(config, "Elements", "showcalc", showcalc);
 		g_key_file_set_integer(config, "View", "iconsize", iconsize);
+		g_key_file_set_integer(config, "View", "showqa", showqa);
 		g_key_file_set_integer(config, "View", "useiconview", useiconview);
 		g_key_file_set_integer(config, "View", "showda", showda);
 		g_key_file_set_integer(config, "View", "order", order);
@@ -94,6 +98,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Window", "hidetitle", hidetitle);
 		g_key_file_set_integer(config, "Window", "hidewindeco", hidewindeco);
 		g_key_file_set_integer(config, "Window", "exitwhenunfocused", exitwhenunfocused);
+		g_key_file_set_integer(config, "Window", "singleinstance", singleinstance);
 	}
 
 	if (!g_key_file_save_to_file(config, config_file_path, &error)) 
@@ -147,6 +152,8 @@ void readconf(void)
 
 		if (g_key_file_has_key(key_file, "View", "order", NULL))
 			order = g_key_file_get_integer(key_file, "View", "order", NULL);
+		if (g_key_file_has_key(key_file, "View", "showqa", NULL))
+			showqa = g_key_file_get_integer(key_file, "View", "showqa", NULL);
 		if (g_key_file_has_key(key_file, "View", "useiconview", NULL))
 			useiconview = g_key_file_get_integer(key_file, "View", "useiconview", NULL);
 		if (g_key_file_has_key(key_file, "View", "iconsize", NULL))
@@ -191,6 +198,9 @@ void readconf(void)
 
 		if (g_key_file_has_key(key_file, "Window", "exitwhenunfocused", NULL))
 			exitwhenunfocused = g_key_file_get_integer(key_file, "Window", "exitwhenunfocused", NULL);
+
+		if (g_key_file_has_key(key_file, "Window", "singleinstance", NULL))
+			singleinstance = g_key_file_get_integer(key_file, "Window", "singleinstance", NULL);
 
 		g_key_file_free(key_file);
 

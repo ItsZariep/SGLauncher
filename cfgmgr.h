@@ -72,11 +72,12 @@ void showcfg(void)
 			gtk_widget_set_direction(wshowda, GTK_TEXT_DIR_RTL);
 		wentryonbottom = gtk_check_button_new_with_label(_("Search entry on bottom"));
 			gtk_widget_set_direction(wentryonbottom, GTK_TEXT_DIR_RTL);
+		wshowqa = gtk_check_button_new_with_label(_("Show quick actions"));
+			gtk_widget_set_direction(wshowqa, GTK_TEXT_DIR_RTL);
 		wuseiconview = gtk_check_button_new_with_label(_("Use icon view"));
 			gtk_widget_set_direction(wuseiconview, GTK_TEXT_DIR_RTL);
 		GtkAdjustment *Icon_adjustment = gtk_adjustment_new(1, 0, 1024, 1, 1, 0);
 			wiconsize = gtk_spin_button_new(Icon_adjustment, 1, 0);
-
 
 		wcloseterm = gtk_check_button_new_with_label(_("Close terminal when process finishes"));
 			gtk_widget_set_direction(wcloseterm, GTK_TEXT_DIR_RTL);
@@ -97,6 +98,8 @@ void showcfg(void)
 			gtk_widget_set_direction(whidewindeco, GTK_TEXT_DIR_RTL);
 		wexitwhenunfocused = gtk_check_button_new_with_label(_("Exit when unfocused"));
 			gtk_widget_set_direction(wexitwhenunfocused, GTK_TEXT_DIR_RTL);
+		wsingleinstance = gtk_check_button_new_with_label(_("Allow only a single instance"));
+			gtk_widget_set_direction(wsingleinstance, GTK_TEXT_DIR_RTL);
 
 		defbtn = gtk_button_new_with_label(_("Default"));
 		applybtn = gtk_button_new_with_label(_("Apply"));
@@ -121,9 +124,10 @@ void showcfg(void)
 		gtk_grid_attach(GTK_GRID(tab_view), worder, 1, 0, 1, 1);
 		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Icon Size")), 0, 1, 1, 1);
 			gtk_grid_attach(GTK_GRID(tab_view), wiconsize, 1, 1, 1, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wuseiconview, 0, 2, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wshowda, 0, 3, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wentryonbottom, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wshowqa, 0, 2, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wuseiconview, 0, 3, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wshowda, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wentryonbottom, 0, 5, 2, 1);
 
 	GtkWidget *tab_behavior = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_behavior), TRUE);
@@ -141,6 +145,7 @@ void showcfg(void)
 		gtk_grid_attach(GTK_GRID(tab_window), whidetitle, 0, 2, 2, 1);
 		gtk_grid_attach(GTK_GRID(tab_window), whidewindeco, 0, 3, 2, 1);
 		gtk_grid_attach(GTK_GRID(tab_window), wexitwhenunfocused, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), wsingleinstance, 0, 5, 2, 1);
 
 	gtk_box_pack_start(GTK_BOX(confbox), notebook, TRUE, TRUE, 0);
 
@@ -152,6 +157,7 @@ void showcfg(void)
 	gtk_container_add(GTK_CONTAINER(dialog), confbox);
 
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowda), showda);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowqa), showqa);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wuseiconview), useiconview);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wentryonbottom), entryonbottom);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowcmd), showcmd);
@@ -167,6 +173,7 @@ void showcfg(void)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(whidetitle), hidetitle);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(whidewindeco), hidewindeco);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wexitwhenunfocused), exitwhenunfocused);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wsingleinstance), singleinstance);
 
 	gint length = strlen(cengine);
 	if (length > 0 && cengine[length - 1] == '\n')

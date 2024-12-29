@@ -92,7 +92,10 @@ static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpoi
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_run);
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_runt);
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_showfm);
-				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_addqa);
+				if (showqa)
+				{
+					gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_addqa);
+				}
 
 				gtk_widget_set_sensitive(menu_item_comment, FALSE);
 

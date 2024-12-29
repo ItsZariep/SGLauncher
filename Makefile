@@ -20,11 +20,15 @@ sglauncher: sglauncher.o
 	$(CC) $(CFLAGS) -o $@ $< $(LIBS) -lm
 
 compile-locales:
+	xgettext --language=C --keyword=_ --output=po/messages.pot *.c *.h
 	@for lang in $(LANGUAGES); do \
 		mkdir -p $(LOCALEDIR)/$$lang/LC_MESSAGES; \
-		echo Compiling locale: $$lang; \
-		msgfmt  $(LOCALEDIR)/$$lang/$(DOMAIN).po --output $(LOCALEDIR)/$$lang/LC_MESSAGES/$(DOMAIN).mo --verbose; \
+		echo "Updating .po file for locale: $$lang"; \
+		msgmerge --update $(LOCALEDIR)/$$lang/$(DOMAIN).po po/messages.pot; \
+		echo "Compiling locale: $$lang"; \
+		msgfmt $(LOCALEDIR)/$$lang/$(DOMAIN).po --output-file=$(LOCALEDIR)/$$lang/LC_MESSAGES/$(DOMAIN).mo --verbose; \
 	done
+
 
 debug: sglauncher.o
 	$(CC) $(CFLAGS) -o $@ $< $(LIBS) -lm -g

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 11:22-0600\n"
+"POT-Creation-Date: 2024-12-29 09:45-0600\n"
 "PO-Revision-Date: 2024-11-27 08:24-0600\n"
-"Last-Translator: ItzSelenux <itszariep@pc>\n"
+"Last-Translator: ItsZariep <itszariep@pc>\n"
 "Language-Team: Spanish <es@tp.org.es>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -66,137 +66,163 @@ msgid "Search entry on bottom"
 msgstr "Barra de busqueda abajo"
 
 #: cfgmgr.h:75
+msgid "Show quick actions"
+msgstr "Mostrar acciones rapidas"
+
+#: cfgmgr.h:77
 msgid "Use icon view"
 msgstr "Usar vista de iconos"
 
-#: cfgmgr.h:81
+#: cfgmgr.h:82
 msgid "Close terminal when process finishes"
 msgstr "Cerrar terminal cuando el proceso finalice"
 
-#: cfgmgr.h:83
+#: cfgmgr.h:84
 msgid "Use scientific notation on math answers"
 msgstr "Usar notación científica en las respuestas matemáticas"
 
-#: cfgmgr.h:85
+#: cfgmgr.h:86
 msgid "Ignore \"NoDisplay\" apps"
 msgstr "Ignorar aplicaciones ocultas"
 
-#: cfgmgr.h:87
+#: cfgmgr.h:88
 msgid "Ignore Terminal apps"
 msgstr "Ignorar aplicaciones de terminal"
 
-#: cfgmgr.h:89
+#: cfgmgr.h:90
 msgid "Ignore \"OnlyShowIn\" Value"
 msgstr "Ignorar el valor \"OnlyShowIn\""
 
-#: cfgmgr.h:92
+#: cfgmgr.h:93
 msgid "Use CSD Decoration"
 msgstr "Usar decoración CSD"
 
-#: cfgmgr.h:94
+#: cfgmgr.h:95
 msgid "Hide CSD Title"
 msgstr "Esconder titulo CSD"
 
-#: cfgmgr.h:96
+#: cfgmgr.h:97
 msgid "Disable WM Decoration"
 msgstr "Deshabilitar decoración por WM"
 
-#: cfgmgr.h:98
+#: cfgmgr.h:99
 msgid "Exit when unfocused"
 msgstr "Salir cuando se pierda el foco"
 
 #: cfgmgr.h:101
+msgid "Allow only a single instance"
+msgstr "Permitir solo una instancia"
+
+#: cfgmgr.h:104
 msgid "Default"
 msgstr "Por defecto"
 
-#: cfgmgr.h:102
+#: cfgmgr.h:105
 msgid "Apply"
 msgstr "Aplicar"
 
-#: cfgmgr.h:106
+#: cfgmgr.h:109
 msgid "Elements"
 msgstr "Elementos"
 
-#: cfgmgr.h:107
+#: cfgmgr.h:110
 msgid "Search Engine:"
 msgstr "Motor de búsqueda"
 
-#: cfgmgr.h:119
+#: cfgmgr.h:122
 msgid "View"
 msgstr "Vista"
 
-#: cfgmgr.h:120
+#: cfgmgr.h:123
 msgid "Item order:"
 msgstr "Orden de elementos"
 
-#: cfgmgr.h:122
+#: cfgmgr.h:125
 msgid "Icon Size"
 msgstr "Tamaño de iconos"
 
-#: cfgmgr.h:130
+#: cfgmgr.h:134
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: cfgmgr.h:139
+#: cfgmgr.h:143
 msgid "Window"
 msgstr "Ventana"
 
-#: events.h:82
+#: events.h:83 quickaccess.h:289
 msgid "Run"
 msgstr "Ejecutar"
 
-#: events.h:83
+#: events.h:84
 msgid "Run in terminal"
 msgstr "Ejecutar en un terminal"
 
-#: events.h:84
+#: events.h:85
 msgid "Show entry in file manager"
 msgstr "Mostrar entrada en el gestor de archivos"
 
-#: mainwindow.h:28
+#: events.h:86
+msgid "Add to Quick access"
+msgstr "Añadir a Acciones rapidas"
+
+#: mainwindow.h:48
 msgid "Project Website"
 msgstr "Sitio web del proyecto"
 
-#: mainwindow.h:40
+#: mainwindow.h:60
 msgid "Documentation available on Codeberg"
 msgstr "Documentación disponible en Codeberg"
 
-#: mainwindow.h:43
+#: mainwindow.h:63
 msgid "Documentation available at:"
 msgstr "Documentación disponible en Codeberg"
 
-#: mainwindow.h:104
+#: mainwindow.h:125
 msgid "Settings"
 msgstr "Ajustes"
 
-#: mainwindow.h:108
+#: mainwindow.h:129
 msgid "Help"
 msgstr "Ayuda"
 
-#: mainwindow.h:110
+#: mainwindow.h:132
 msgid "Online help"
 msgstr "Ayuda en línea"
 
-#: mainwindow.h:111
+#: mainwindow.h:133
 msgid "About"
 msgstr "Acerca de"
 
-#: mainwindow.h:178
+#: mainwindow.h:200
 msgid "Run in Terminal"
 msgstr "Ejecutar en un terminal"
 
-#: mainwindow.h:189
+#: mainwindow.h:211
 msgid "Search on Web"
 msgstr "Buscar en internet"
 
-#: mainwindow.h:200
+#: mainwindow.h:222
 msgid "Open file/directory"
 msgstr "Abrir archivo/directorio"
 
-#: mainwindow.h:236
+#: mainwindow.h:259
 msgid "Math Answer: "
 msgstr "Respuesta:"
 
-#: mainwindow.h:239
-msgid "Press Enter to Run first item, or down to select another item"
-msgstr " "
+#: quickaccess.h:290
+#, fuzzy
+msgid "Run in a terminal"
+msgstr "Ejecutar en un terminal"
+
+#: quickaccess.h:292
+msgid "Move to left"
+msgstr "Mover a la izquierda"
+
+#: quickaccess.h:293
+msgid "Move to right"
+msgstr "Mover a la derecha"
+
+#: quickaccess.h:315
+#, fuzzy
+msgid "Remove from Quick access"
+msgstr "Remover de Acciones rapidas"

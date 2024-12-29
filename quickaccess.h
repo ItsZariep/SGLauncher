@@ -286,11 +286,11 @@ void load_quickaccess(void)
 		cmdexec = g_strdup_printf("%s -e /bin/sh -c \"%s %s\"", terminal, (gchar *)g_strdup(toexec), ccloseterm);
 
 		menu_item_comment = gtk_menu_item_new_with_label(g_strdup(app_comment));
-		menu_item_run = gtk_menu_item_new_with_label("Run");
-		menu_item_runterm = gtk_menu_item_new_with_label("Run in a terminal");
+		menu_item_run = gtk_menu_item_new_with_label(_("Run"));
+		menu_item_runterm = gtk_menu_item_new_with_label(_("Run in a terminal"));
 
-		menu_item_moveleft = gtk_menu_item_new_with_label("Move to left");
-		menu_item_moveright = gtk_menu_item_new_with_label("Move to right");
+		menu_item_moveleft = gtk_menu_item_new_with_label(_("Move to left"));
+		menu_item_moveright = gtk_menu_item_new_with_label(_("Move to right"));
 			gtk_widget_set_name(menu_item_moveleft, file_name);
 			gtk_widget_set_name(menu_item_moveright, file_name);
 
@@ -312,7 +312,7 @@ void load_quickaccess(void)
 		g_signal_connect(menu_item_moveright, "activate", G_CALLBACK(swapfiles), GINT_TO_POINTER(1));
 	}
 
-		menu_item_remove = gtk_menu_item_new_with_label("Remove from Quick access");
+		menu_item_remove = gtk_menu_item_new_with_label(_("Remove from Quick access"));
 
 		gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_comment);
 			gtk_widget_set_sensitive(menu_item_comment, FALSE);
