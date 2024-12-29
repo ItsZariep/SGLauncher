@@ -8,7 +8,6 @@ int main(int argc, char *argv[])
 	gchar* env_sgcsd = getenv("SGCSD");
 	terminal = getenv("TERMINAL");
 	deskenv = getenv("XDG_CURRENT_DESKTOP");
-	home_dir = g_get_home_dir();
 	nocsd = (env_sgcsd != NULL) ? atoi(env_sgcsd) == 0 : 0;
 	fcsd = (env_sgcsd != NULL) ? 1 : 0;
 

@@ -64,7 +64,7 @@ void load_apps(GtkTreeView *treeview)
 
 	app_dirs[z] = NULL;
 
-	store = gtk_tree_store_new(6, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 	renderer = gtk_cell_renderer_pixbuf_new();
 	column = gtk_tree_view_column_new_with_attributes("", renderer, "pixbuf", 2, NULL);
@@ -193,7 +193,7 @@ void load_apps(GtkTreeView *treeview)
 			GtkTreeIter app_iter;
 			gtk_tree_store_append(store, &app_iter, NULL);
 			gchar *merged_data = g_strdup_printf("%s%s%s", app_name, toexec, icon_name);
-			gtk_tree_store_set(store, &app_iter, 0, app_name, 1, toexec, 2, icon_pixbuf, 3, merged_data, 4, app_comment, 5, dir_name, -1);
+			gtk_tree_store_set(store, &app_iter, 0, app_name, 1, toexec, 2, icon_pixbuf, 3, merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
 			gtk_tree_view_set_tooltip_column(GTK_TREE_VIEW(treeview), 4);
 			gtk_icon_view_set_tooltip_column(GTK_ICON_VIEW(iconview), 4);
 
@@ -213,7 +213,7 @@ void load_apps(GtkTreeView *treeview)
 							GtkTreeIter action_iter;
 							gtk_tree_store_append(store, &action_iter, &app_iter);
 							gchar *action_merged_data = g_strdup_printf("%s%s%s", action_name, exec_value, icon_name);
-							gtk_tree_store_set(store, &action_iter, 0, action_name, 1, exec_value, 2, icon_pixbuf, 3, action_merged_data, 4, app_comment, 5, dir_name, -1);
+							gtk_tree_store_set(store, &action_iter, 0, action_name, 1, exec_value, 2, icon_pixbuf, 3, action_merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
 							g_free(action_name);
 							g_free(exec_value);
 							g_free(action_merged_data);
@@ -233,4 +233,5 @@ void load_apps(GtkTreeView *treeview)
 		}
 		closedir(dir);
 	}
+	load_quickaccess();
 }

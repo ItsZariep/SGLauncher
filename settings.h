@@ -6,9 +6,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 	GKeyFile *config = g_key_file_new();
 	GError *error = NULL;
 
-	const gchar *activetext = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(webcombo)),
-		*ncengine = NULL,
-		*entry_text = gtk_entry_get_text(GTK_ENTRY(webctm)),
+	const gchar*ncengine = NULL, *entry_text = gtk_entry_get_text(GTK_ENTRY(webctm)),
 		*placeholder_text = gtk_entry_get_placeholder_text(GTK_ENTRY(webctm));
 
 	if (!g_key_file_load_from_file(config, config_file_path, G_KEY_FILE_KEEP_COMMENTS, &error))
@@ -113,14 +111,6 @@ void updateconf(GtkButton *widget, gpointer user_data)
 
 void readconf(void)
 {
-	//READ THE CONF
-	if (home_dir == NULL)
-	{
-		nohome = 1;
-		return;
-	}
-	else
-	{
 		config_file_path = g_build_filename(g_get_user_config_dir(), "sglauncher.conf", NULL);
 
 		GKeyFile *key_file;
@@ -167,8 +157,10 @@ void readconf(void)
 			entryonbottom = g_key_file_get_integer(key_file, "View", "entryonbottom", NULL);
 
 		if (g_key_file_has_key(key_file, "Behavior", "closeterm", NULL))
+		{
 			closeterm = g_key_file_get_integer(key_file, "Behavior", "closeterm", NULL);
 			ccloseterm = closeterm ? "": ";read" ;
+		}
 
 		if (g_key_file_has_key(key_file, "Behavior", "showscientific", NULL))
 			showscientific = g_key_file_get_integer(key_file, "Behavior", "showscientific", NULL);
@@ -201,7 +193,6 @@ void readconf(void)
 			exitwhenunfocused = g_key_file_get_integer(key_file, "Window", "exitwhenunfocused", NULL);
 
 		g_key_file_free(key_file);
-	}
 
 	switch (wengine)
 	{

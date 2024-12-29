@@ -98,6 +98,7 @@ void create_window(void)
 	gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbar), button);
 
 	submenu = gtk_menu_new();
+	gtk_menu_set_reserve_toggle_size(GTK_MENU(submenu), FALSE);
 
 	if (!nohome)
 	{
@@ -107,6 +108,7 @@ void create_window(void)
 
 	submenu_item_help = gtk_menu_item_new_with_label(_("Help"));
 	submenu_menu_help = gtk_menu_new();
+		gtk_menu_set_reserve_toggle_size(GTK_MENU(submenu_menu_help), FALSE);
 		submenu_item_onlinehelp = gtk_menu_item_new_with_label(_("Online help"));
 		submenu_item_about = gtk_menu_item_new_with_label(_("About"));
 
@@ -233,16 +235,15 @@ void create_window(void)
 	grid = gtk_grid_new();
 	gtk_container_add(GTK_CONTAINER(window), grid);
 	mathtext = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
+	qa = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
 	math = gtk_label_new(_("Math Answer: "));
 	manswer = gtk_label_new("");
 	gtk_label_set_selectable(GTK_LABEL(manswer), TRUE);
-	pr = gtk_label_new(_("Press Enter to Run first item, or down to select another item"));
 
 	if (showcalc == 1)
 	{
 		gtk_box_pack_start(GTK_BOX(mathtext), math, TRUE, TRUE, 0);
 		gtk_box_pack_start(GTK_BOX(mathtext), manswer, TRUE, TRUE, 0);
-		gtk_box_pack_start(GTK_BOX(mathtext), pr, TRUE, TRUE, 0);
 	}
 
 	gtk_widget_set_vexpand(scrolled_window, TRUE);
@@ -278,15 +279,18 @@ void create_window(void)
 		{
 			gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 5, 1, 1);
 			gtk_grid_attach(GTK_GRID(grid), entry, 0, 6, 1, 1);
+			gtk_grid_attach(GTK_GRID(grid), qa, 0, 7, 1, 1);
 		}
 		else
 		{
-			gtk_grid_attach(GTK_GRID(grid), entry, 0, 1, 1, 1);
+			gtk_grid_attach(GTK_GRID(grid), entry, 0, 0, 1, 1);
+			gtk_grid_attach(GTK_GRID(grid), qa, 0, 1, 1, 1);
 			gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 2, 1, 1);
 		}
 	}
 	else
 	{
+		gtk_grid_attach(GTK_GRID(grid), qa, 0, 0, 1, 1);
 		gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 2, 1, 1);
 	}
 	if (sgcfg)
@@ -319,7 +323,6 @@ void create_window(void)
 		gtk_widget_show_all(window);
 		gtk_widget_hide(mathtext);
 		gtk_widget_hide(listbox2);
-		gtk_widget_hide(pr);
 		gtk_main();
 	}
 }

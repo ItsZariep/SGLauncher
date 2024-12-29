@@ -48,6 +48,7 @@ static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpoi
 		gchar *cmdexec = NULL;
 		gchar *fmexec = NULL;
 		gchar *app_path = NULL;
+		gchar *entrypath = NULL;
 
 		if (useiconview == 1)
 		{
@@ -74,7 +75,7 @@ static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpoi
 		{
 			if (gtk_tree_model_get_iter(model, &iter, path))
 			{
-				gtk_tree_model_get(model, &iter, 4, &app_comment, 1, &toexec, 5, &app_path, -1);
+				gtk_tree_model_get(model, &iter, 4, &app_comment, 1, &toexec, 5, &app_path, 6, &entrypath, -1);
 				cmdexec = g_strdup_printf("%s -e /bin/sh -c \"%s %s\"", terminal, toexec, ccloseterm);
 				fmexec = g_strdup_printf("xdg-open %s", app_path);
 
@@ -82,13 +83,16 @@ static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpoi
 				*menu_item_run = gtk_menu_item_new_with_label(_("Run")),
 				*menu_item_runt = gtk_menu_item_new_with_label(_("Run in terminal")),
 				*menu_item_showfm = gtk_menu_item_new_with_label(_("Show entry in file manager")),
+				*menu_item_addqa = gtk_menu_item_new_with_label(_("Add to Quick access")),
 				*menu_item_comment = gtk_menu_item_new_with_label(app_comment);
+					gtk_menu_set_reserve_toggle_size(GTK_MENU(menu), FALSE);
 
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_comment);
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), gtk_separator_menu_item_new());
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_run);
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_runt);
 				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_showfm);
+				gtk_menu_shell_append(GTK_MENU_SHELL(menu), menu_item_addqa);
 
 				gtk_widget_set_sensitive(menu_item_comment, FALSE);
 
@@ -120,6 +124,7 @@ static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpoi
 				g_signal_connect(menu_item_run, "activate", G_CALLBACK(run_command), (gpointer)toexec);
 				g_signal_connect(menu_item_runt, "activate", G_CALLBACK(run_command), (gpointer)cmdexec);
 				g_signal_connect(menu_item_showfm, "activate", G_CALLBACK(run_command), (gpointer)fmexec);
+				g_signal_connect(menu_item_addqa, "activate", G_CALLBACK(create_quickaccess), (gpointer)entrypath);
 
 				gtk_menu_popup_at_pointer(GTK_MENU(menu), (GdkEvent*)event);
 

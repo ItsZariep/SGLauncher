@@ -13,8 +13,8 @@
 #define localedir "/usr/share/locale"
 #define ML 256
 
-const gchar *cweb, *cwebng, *corder, *active_text, *home_dir, *config_file_path, *terminal, *deskenv,
-*quick_dirs[] = {NULL};
+const gchar *cweb, *cwebng, *corder, *active_text, *home_dir, *config_file_path, *terminal,
+*deskenv, *quick_dirs[] = {NULL};
 gchar *pm, *webengine, *cwengine, cengine[ML], *program_icon, *ccloseterm;
 
 guint wengine, order=0, showweb=1, showcmd=1, showcalc=1, showda=1, showofd=1, useiconview=0,
@@ -23,7 +23,7 @@ guint wengine, order=0, showweb=1, showcmd=1, showcalc=1, showda=1, showofd=1, u
 	ignorenodisplay=1, ignoreterminal=0, ignoreonlyshowin=0, hidewindeco=0;
 
 GtkWidget *window, *grid, *button, *cmd_row, *dialog, *web_row, *entry, *manswer, *mathtext,
-*listbox2, *pr, *row, *headerbar, *button, *image, *wtitle, *submenu, *submenu_item_settings,
+*listbox2, *qa, *row, *headerbar, *button, *image, *wtitle, *submenu, *submenu_item_settings,
 *submenu_item_quickhelp, *submenu_item_about, *submenu_item4, *submenu_item5, *weblabel, *webcombo,
 *webctm, *worder, *wshowcmd, *wshowweb, *wshowcalc, *wshowscientific, *wexitwhenunfocused, *defbtn,
 *applybtn, *applist, *web_box, *wshowda, *wusecsd, *whidetitle ,*scrolled_window, *math, *iconview,
@@ -52,6 +52,7 @@ GOptionEntry entries[] =
 #include "settings.h"
 #include "calc.h"
 #include "exec.h"
+#include "quickaccess.h"
 #include "entryloader.h"
 #include "keyhandler.h"
 #include "events.h"

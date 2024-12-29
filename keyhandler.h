@@ -88,14 +88,12 @@ static void on_entry_changed(GtkEntry *target, FilterData *filterdata)
 			gtk_widget_show(mathtext);
 			gtk_widget_show(math);
 			gtk_widget_show(manswer);
-			gtk_widget_hide(pr);
 		}
 		else if (strlen(filterdata->filter_text) > 0 && !isdigit(filterdata->filter_text[0]))
 		{
 			gtk_widget_show(mathtext);
 			gtk_widget_hide(math);
 			gtk_widget_hide(manswer);
-			gtk_widget_show(pr);
 			gtk_widget_show(listbox2);
 		}
 		else
@@ -107,7 +105,7 @@ static void on_entry_changed(GtkEntry *target, FilterData *filterdata)
 
 gboolean on_key_release(GtkWidget *widget, GdkEventKey *event, gpointer user_data) 
 {
-	const char *text = gtk_entry_get_text(GTK_ENTRY(entry));
+	//const char *text = gtk_entry_get_text(GTK_ENTRY(entry));
 	if (event->keyval == GDK_KEY_Escape || (event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK))) 
 	{
 		gtk_main_quit();
