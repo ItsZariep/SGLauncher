@@ -33,15 +33,16 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		}
 
 		g_key_file_set_string(config, "Elements", "cengine", "https://search.disroot.org/search?q");
-		g_key_file_set_string(config, "Elements", "wengine", 0);
+		g_key_file_set_integer(config, "Elements", "wengine", 0);
 		g_key_file_set_integer(config, "Elements", "showcmd", 1);
 		g_key_file_set_integer(config, "Elements", "showweb", 0);
 		g_key_file_set_integer(config, "Elements", "showcalc", 1);
 		g_key_file_set_integer(config, "Elements", "showofd", 1);
 		g_key_file_set_integer(config, "View", "iconsize", 16);
+		g_key_file_set_integer(config, "View", "qasize", 16);
 		g_key_file_set_integer(config, "View", "useiconview", 0);
 		g_key_file_set_integer(config, "View", "showda", 1);
-		g_key_file_set_string(config, "View", "order", 0);
+		g_key_file_set_integer(config, "View", "order", 0);
 		g_key_file_set_integer(config, "Behavior", "closeterm", 0);
 		g_key_file_set_integer(config, "Behavior", "showscientific", 1);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", 1);
@@ -76,6 +77,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		order = gtk_combo_box_get_active(GTK_COMBO_BOX(worder));
 		wengine = gtk_combo_box_get_active(GTK_COMBO_BOX(webcombo));
 		iconsize = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wiconsize));
+		qasize = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wqasize));
 		ncengine = (entry_text && strlen(entry_text) > 0) ? entry_text : placeholder_text;
 
 		g_key_file_set_string(config, "Elements", "cengine", ncengine);
@@ -85,6 +87,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Elements", "showofd", showofd);
 		g_key_file_set_integer(config, "Elements", "showcalc", showcalc);
 		g_key_file_set_integer(config, "View", "iconsize", iconsize);
+		g_key_file_set_integer(config, "View", "qasize", qasize);
 		g_key_file_set_integer(config, "View", "showqa", showqa);
 		g_key_file_set_integer(config, "View", "useiconview", useiconview);
 		g_key_file_set_integer(config, "View", "showda", showda);
@@ -158,6 +161,8 @@ void readconf(void)
 			useiconview = g_key_file_get_integer(key_file, "View", "useiconview", NULL);
 		if (g_key_file_has_key(key_file, "View", "iconsize", NULL))
 			iconsize = g_key_file_get_integer(key_file, "View", "iconsize", NULL);
+		if (g_key_file_has_key(key_file, "View", "qasize", NULL))
+			qasize = g_key_file_get_integer(key_file, "View", "qasize", NULL);
 		if (g_key_file_has_key(key_file, "View", "showda", NULL))
 			showda = g_key_file_get_integer(key_file, "View", "showda", NULL);
 		if (g_key_file_has_key(key_file, "View", "entryonbottom", NULL))
@@ -222,7 +227,4 @@ void readconf(void)
 			webengine = "https://duckduckgo.com/?q";
 			break;
 	}
-	g_info("WebEngine: %s\nOrder: %d\nShowDA: %d\nShowCMD: %d\nShowWeb: %d\nShowCalc: %d\nShowScientific: %d\nExitWhenUnfocused: %d\nUseCSD: %d\nHideTitle: %d\nIcon Size: %d\n",
-		webengine, order, showda, showcmd, showweb, showcalc, showscientific, exitwhenunfocused,
-		usecsd, hidetitle, iconsize);
 }

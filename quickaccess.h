@@ -246,7 +246,7 @@ void load_quickaccess(void)
 		else
 		{
 			GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
-			GtkIconInfo *icon_info = gtk_icon_theme_lookup_icon(icon_theme, icon_name, iconsize, GTK_ICON_LOOKUP_USE_BUILTIN);
+			GtkIconInfo *icon_info = gtk_icon_theme_lookup_icon(icon_theme, icon_name, qasize, GTK_ICON_LOOKUP_USE_BUILTIN);
 
 			if (icon_info)
 			{

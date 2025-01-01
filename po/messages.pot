@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 09:46-0600\n"
+"POT-Creation-Date: 2024-12-31 19:08-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,79 +73,83 @@ msgstr ""
 msgid "Use icon view"
 msgstr ""
 
-#: cfgmgr.h:82
+#: cfgmgr.h:84
 msgid "Close terminal when process finishes"
 msgstr ""
 
-#: cfgmgr.h:84
+#: cfgmgr.h:86
 msgid "Use scientific notation on math answers"
 msgstr ""
 
-#: cfgmgr.h:86
+#: cfgmgr.h:88
 msgid "Ignore \"NoDisplay\" apps"
 msgstr ""
 
-#: cfgmgr.h:88
+#: cfgmgr.h:90
 msgid "Ignore Terminal apps"
 msgstr ""
 
-#: cfgmgr.h:90
+#: cfgmgr.h:92
 msgid "Ignore \"OnlyShowIn\" Value"
 msgstr ""
 
-#: cfgmgr.h:93
+#: cfgmgr.h:95
 msgid "Use CSD Decoration"
 msgstr ""
 
-#: cfgmgr.h:95
+#: cfgmgr.h:97
 msgid "Hide CSD Title"
 msgstr ""
 
-#: cfgmgr.h:97
+#: cfgmgr.h:99
 msgid "Disable WM Decoration"
 msgstr ""
 
-#: cfgmgr.h:99
+#: cfgmgr.h:101
 msgid "Exit when unfocused"
 msgstr ""
 
-#: cfgmgr.h:101
+#: cfgmgr.h:103
 msgid "Allow only a single instance"
 msgstr ""
 
-#: cfgmgr.h:104
+#: cfgmgr.h:106
 msgid "Default"
 msgstr ""
 
-#: cfgmgr.h:105
+#: cfgmgr.h:107
 msgid "Apply"
 msgstr ""
 
-#: cfgmgr.h:109
+#: cfgmgr.h:111
 msgid "Elements"
 msgstr ""
 
-#: cfgmgr.h:110
+#: cfgmgr.h:112
 msgid "Search Engine:"
 msgstr ""
 
-#: cfgmgr.h:122
+#: cfgmgr.h:124
 msgid "View"
 msgstr ""
 
-#: cfgmgr.h:123
+#: cfgmgr.h:125
 msgid "Item order:"
 msgstr ""
 
-#: cfgmgr.h:125
+#: cfgmgr.h:127
 msgid "Icon Size"
 msgstr ""
 
-#: cfgmgr.h:134
+#: cfgmgr.h:129
+msgid "Quick Actions Size"
+msgstr ""
+
+#: cfgmgr.h:138
 msgid "Behavior"
 msgstr ""
 
-#: cfgmgr.h:143
+#: cfgmgr.h:147
 msgid "Window"
 msgstr ""
 

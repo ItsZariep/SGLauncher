@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 09:45-0600\n"
+"POT-Creation-Date: 2024-12-31 18:55-0600\n"
 "PO-Revision-Date: 2024-11-27 08:24-0600\n"
 "Last-Translator: ItsZariep <itszariep@pc>\n"
 "Language-Team: Spanish <es@tp.org.es>\n"
@@ -73,79 +73,84 @@ msgstr "Mostrar acciones rapidas"
 msgid "Use icon view"
 msgstr "Usar vista de iconos"
 
-#: cfgmgr.h:82
+#: cfgmgr.h:84
 msgid "Close terminal when process finishes"
 msgstr "Cerrar terminal cuando el proceso finalice"
 
-#: cfgmgr.h:84
+#: cfgmgr.h:86
 msgid "Use scientific notation on math answers"
 msgstr "Usar notación científica en las respuestas matemáticas"
 
-#: cfgmgr.h:86
+#: cfgmgr.h:88
 msgid "Ignore \"NoDisplay\" apps"
 msgstr "Ignorar aplicaciones ocultas"
 
-#: cfgmgr.h:88
+#: cfgmgr.h:90
 msgid "Ignore Terminal apps"
 msgstr "Ignorar aplicaciones de terminal"
 
-#: cfgmgr.h:90
+#: cfgmgr.h:92
 msgid "Ignore \"OnlyShowIn\" Value"
 msgstr "Ignorar el valor \"OnlyShowIn\""
 
-#: cfgmgr.h:93
+#: cfgmgr.h:95
 msgid "Use CSD Decoration"
 msgstr "Usar decoración CSD"
 
-#: cfgmgr.h:95
+#: cfgmgr.h:97
 msgid "Hide CSD Title"
 msgstr "Esconder titulo CSD"
 
-#: cfgmgr.h:97
+#: cfgmgr.h:99
 msgid "Disable WM Decoration"
 msgstr "Deshabilitar decoración por WM"
 
-#: cfgmgr.h:99
+#: cfgmgr.h:101
 msgid "Exit when unfocused"
 msgstr "Salir cuando se pierda el foco"
 
-#: cfgmgr.h:101
+#: cfgmgr.h:103
 msgid "Allow only a single instance"
 msgstr "Permitir solo una instancia"
 
-#: cfgmgr.h:104
+#: cfgmgr.h:106
 msgid "Default"
 msgstr "Por defecto"
 
-#: cfgmgr.h:105
+#: cfgmgr.h:107
 msgid "Apply"
 msgstr "Aplicar"
 
-#: cfgmgr.h:109
+#: cfgmgr.h:111
 msgid "Elements"
 msgstr "Elementos"
 
-#: cfgmgr.h:110
+#: cfgmgr.h:112
 msgid "Search Engine:"
 msgstr "Motor de búsqueda"
 
-#: cfgmgr.h:122
+#: cfgmgr.h:124
 msgid "View"
 msgstr "Vista"
 
-#: cfgmgr.h:123
+#: cfgmgr.h:125
 msgid "Item order:"
 msgstr "Orden de elementos"
 
-#: cfgmgr.h:125
+#: cfgmgr.h:127
 msgid "Icon Size"
 msgstr "Tamaño de iconos"
 
-#: cfgmgr.h:134
+#: cfgmgr.h:129
+#, fuzzy
+msgid "Quick Actions Size"
+msgstr "Tamaño de las acciones rapidas"
+
+#: cfgmgr.h:138
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: cfgmgr.h:143
+#: cfgmgr.h:147
 msgid "Window"
 msgstr "Ventana"
 

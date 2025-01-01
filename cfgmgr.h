@@ -78,6 +78,8 @@ void showcfg(void)
 			gtk_widget_set_direction(wuseiconview, GTK_TEXT_DIR_RTL);
 		GtkAdjustment *Icon_adjustment = gtk_adjustment_new(1, 0, 1024, 1, 1, 0);
 			wiconsize = gtk_spin_button_new(Icon_adjustment, 1, 0);
+		GtkAdjustment *qa_adjustment = gtk_adjustment_new(1, 0, 1024, 1, 1, 0);
+			wqasize = gtk_spin_button_new(qa_adjustment, 1, 0);
 
 		wcloseterm = gtk_check_button_new_with_label(_("Close terminal when process finishes"));
 			gtk_widget_set_direction(wcloseterm, GTK_TEXT_DIR_RTL);
@@ -124,10 +126,12 @@ void showcfg(void)
 		gtk_grid_attach(GTK_GRID(tab_view), worder, 1, 0, 1, 1);
 		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Icon Size")), 0, 1, 1, 1);
 			gtk_grid_attach(GTK_GRID(tab_view), wiconsize, 1, 1, 1, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wshowqa, 0, 2, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wuseiconview, 0, 3, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wshowda, 0, 4, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wentryonbottom, 0, 5, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Quick Actions Size")), 0, 2, 1, 1);
+			gtk_grid_attach(GTK_GRID(tab_view), wqasize, 1, 2, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wshowqa, 0, 3, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wuseiconview, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wshowda, 0, 5, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wentryonbottom, 0, 6, 2, 1);
 
 	GtkWidget *tab_behavior = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_behavior), TRUE);
@@ -186,6 +190,7 @@ void showcfg(void)
 	gtk_combo_box_set_active(GTK_COMBO_BOX(webcombo), wengine);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(worder), order);
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(wiconsize), iconsize);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(wqasize), qasize);
 
 	g_signal_connect(G_OBJECT(webcombo), "changed", G_CALLBACK(on_webcombo_changed), webctm);
 
