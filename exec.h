@@ -1,3 +1,4 @@
+void exit_window(void);
 void run_command(GtkWidget *widget, gpointer data)
 {
 	gchar *input = (gchar *)data;
@@ -23,7 +24,7 @@ void run_command(GtkWidget *widget, gpointer data)
 		else
 		{
 			g_spawn_close_pid(pid);
-			gtk_main_quit();
+			exit_window();
 		}
 	}
 	else

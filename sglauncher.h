@@ -56,7 +56,7 @@ GOptionEntry entries[] =
 #include "exec.h"
 #include "quickaccess.h"
 #include "entryloader.h"
-#include "keyhandler.h"
 #include "events.h"
+#include "keyhandler.h"
 #include "cfgmgr.h"
 #include "mainwindow.h"

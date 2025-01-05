@@ -1,3 +1,41 @@
+void create_window(void);
+void exit_window(void)
+{
+	if (restarting)
+	{
+		gtk_widget_destroy(window);
+		gtk_widget_destroy(dialog);
+		restarting = 0;
+		readconf();
+		create_window();
+	}
+	else
+	{
+		const gchar *lock_file_path = "/tmp/sglauncher.lock";
+		GFile *lock_file = g_file_new_for_path(lock_file_path);
+		GError *error = NULL;
+
+		if (g_file_query_exists(lock_file, NULL))
+		{
+			g_file_delete(lock_file, NULL, &error);
+			if (error)
+			{
+				g_printerr("Error removing lock file: %s\n", error->message);
+				g_error_free(error);
+			}
+			else
+			{
+				g_info("Lock file removed. Program finished.\n");
+			}
+		}
+		else
+		{
+			g_info("Lock file does not exist. No action taken.\n");
+		}
+		exit(0);
+	}
+}
+
 gchar* probe_icons_from_theme(GPtrArray *icon_names)
 {
 	theme = gtk_icon_theme_get_default();
@@ -143,4 +181,3 @@ static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpoi
 	}
 	return FALSE;
 }
-

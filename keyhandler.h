@@ -108,7 +108,7 @@ gboolean on_key_release(GtkWidget *widget, GdkEventKey *event, gpointer user_dat
 	//const char *text = gtk_entry_get_text(GTK_ENTRY(entry));
 	if (event->keyval == GDK_KEY_Escape || (event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK))) 
 	{
-		gtk_main_quit();
+		exit_window();
 		return TRUE;
 	}
 	else if (event->keyval == GDK_KEY_Escape || ((event->state & GDK_CONTROL_MASK) && 
