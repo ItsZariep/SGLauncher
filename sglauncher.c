@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	if (singleinstance)
 	{
 		if (forceinstance)
-		{g_print("%d", forceinstance);exit(2);}
+		{}
 		else
 		{
 			const gchar *lock_file_path = "/tmp/sglauncher.lock";
