@@ -76,10 +76,14 @@ void showcfg(void)
 			gtk_widget_set_direction(wshowqa, GTK_TEXT_DIR_RTL);
 		wuseiconview = gtk_check_button_new_with_label(_("Use icon view"));
 			gtk_widget_set_direction(wuseiconview, GTK_TEXT_DIR_RTL);
+		wshowappicons = gtk_check_button_new_with_label(_("Show app icons"));
+			gtk_widget_set_direction(wshowappicons, GTK_TEXT_DIR_RTL);
 		GtkAdjustment *Icon_adjustment = gtk_adjustment_new(1, 0, 1024, 1, 1, 0);
 			wiconsize = gtk_spin_button_new(Icon_adjustment, 1, 0);
+			GtkWidget *wiconsize_label = gtk_label_new(_("Icon Size"));
 		GtkAdjustment *qa_adjustment = gtk_adjustment_new(1, 0, 1024, 1, 1, 0);
 			wqasize = gtk_spin_button_new(qa_adjustment, 1, 0);
+			GtkWidget *wqasize_label = gtk_label_new(_("Quick Actions Size"));
 
 		wcloseterm = gtk_check_button_new_with_label(_("Close terminal when process finishes"));
 			gtk_widget_set_direction(wcloseterm, GTK_TEXT_DIR_RTL);
@@ -124,14 +128,15 @@ void showcfg(void)
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), tab_view, gtk_label_new(_("View")));
 		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Item order:")), 0, 0, 1, 1);
 		gtk_grid_attach(GTK_GRID(tab_view), worder, 1, 0, 1, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Icon Size")), 0, 1, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wiconsize_label, 0, 1, 1, 1);
 			gtk_grid_attach(GTK_GRID(tab_view), wiconsize, 1, 1, 1, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Quick Actions Size")), 0, 2, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wqasize_label, 0, 2, 1, 1);
 			gtk_grid_attach(GTK_GRID(tab_view), wqasize, 1, 2, 1, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wshowqa, 0, 3, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wuseiconview, 0, 4, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wshowda, 0, 5, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), wentryonbottom, 0, 6, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wshowappicons, 0, 3, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wshowqa, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wuseiconview, 0, 5, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wshowda, 0, 6, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wentryonbottom, 0, 7, 2, 1);
 
 	GtkWidget *tab_behavior = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_behavior), TRUE);
@@ -161,6 +166,7 @@ void showcfg(void)
 	gtk_container_add(GTK_CONTAINER(dialog), confbox);
 
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowda), showda);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowappicons), showappicons);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowqa), showqa);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wuseiconview), useiconview);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wentryonbottom), entryonbottom);
@@ -199,6 +205,11 @@ void showcfg(void)
 	g_signal_connect(wusecsd, "clicked", G_CALLBACK(togglewidget), wentryonbottom);
 	g_signal_connect(wshowcalc, "clicked", G_CALLBACK(togglewidget), wshowscientific);
 
+	g_signal_connect(wshowappicons, "clicked", G_CALLBACK(togglewidget), wiconsize_label);
+	g_signal_connect(wshowappicons, "clicked", G_CALLBACK(togglewidget), wiconsize);
+	g_signal_connect(wshowqa, "clicked", G_CALLBACK(togglewidget), wqasize);
+	g_signal_connect(wshowqa, "clicked", G_CALLBACK(togglewidget), wqasize_label);
+
 	g_signal_connect(defbtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(1));
 	g_signal_connect(applybtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(0));
 
@@ -215,6 +226,19 @@ void showcfg(void)
 	{
 		gtk_widget_hide(wshowscientific);
 	}
+
+	if (!showappicons)
+	{
+		gtk_widget_hide(wiconsize);
+		gtk_widget_hide(wiconsize_label);
+	}
+
+	if (!showqa)
+	{
+		gtk_widget_hide(wqasize);
+		gtk_widget_hide(wqasize_label);
+	}
+
 	if (!usecsd)
 	{
 		gtk_widget_hide(whidetitle);

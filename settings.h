@@ -41,6 +41,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "View", "iconsize", 16);
 		g_key_file_set_integer(config, "View", "qasize", 16);
 		g_key_file_set_integer(config, "View", "useiconview", 0);
+		g_key_file_set_integer(config, "View", "showappicons", 1);
 		g_key_file_set_integer(config, "View", "showda", 1);
 		g_key_file_set_integer(config, "View", "order", 0);
 		g_key_file_set_integer(config, "Behavior", "closeterm", 0);
@@ -61,6 +62,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		showofd = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowofd));
 		showcalc = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowcalc));
 		showda = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowda));
+		showappicons = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowappicons));
 		showqa = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowqa));
 		useiconview = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wuseiconview));
 		entryonbottom = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wentryonbottom));
@@ -88,6 +90,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Elements", "showcalc", showcalc);
 		g_key_file_set_integer(config, "View", "iconsize", iconsize);
 		g_key_file_set_integer(config, "View", "qasize", qasize);
+		g_key_file_set_integer(config, "View", "showappicons", showappicons);
 		g_key_file_set_integer(config, "View", "showqa", showqa);
 		g_key_file_set_integer(config, "View", "useiconview", useiconview);
 		g_key_file_set_integer(config, "View", "showda", showda);
@@ -155,6 +158,8 @@ void readconf(void)
 
 		if (g_key_file_has_key(key_file, "View", "order", NULL))
 			order = g_key_file_get_integer(key_file, "View", "order", NULL);
+		if (g_key_file_has_key(key_file, "View", "showappicons", NULL))
+			showappicons = g_key_file_get_integer(key_file, "View", "showappicons", NULL);
 		if (g_key_file_has_key(key_file, "View", "showqa", NULL))
 			showqa = g_key_file_get_integer(key_file, "View", "showqa", NULL);
 		if (g_key_file_has_key(key_file, "View", "useiconview", NULL))

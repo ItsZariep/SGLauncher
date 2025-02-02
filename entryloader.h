@@ -64,6 +64,7 @@ void load_apps(GtkTreeView *treeview)
 
 	app_dirs[z] = NULL;
 
+	//store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 	store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 	renderer = gtk_cell_renderer_pixbuf_new();
@@ -163,37 +164,40 @@ void load_apps(GtkTreeView *treeview)
 				}
 			}
 
-			if (g_path_is_absolute(icon_name) && g_file_test(icon_name, G_FILE_TEST_EXISTS))
+			if (showappicons)
 			{
-				icon_pixbuf = gdk_pixbuf_new_from_file(icon_name, &error);
-			}
-			else
-			{
-				GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
-				GtkIconInfo *icon_info = gtk_icon_theme_lookup_icon(icon_theme, icon_name, iconsize, GTK_ICON_LOOKUP_USE_BUILTIN);
-				if (icon_info)
+				if (g_path_is_absolute(icon_name) && g_file_test(icon_name, G_FILE_TEST_EXISTS))
 				{
-					icon_pixbuf = gtk_icon_info_load_icon(icon_info, &error);
-					g_object_unref(icon_info);
+					icon_pixbuf = gdk_pixbuf_new_from_file(icon_name, &error);
 				}
-			}
+				else
+				{
+					GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
+					GtkIconInfo *icon_info = gtk_icon_theme_lookup_icon(icon_theme, icon_name, iconsize, GTK_ICON_LOOKUP_USE_BUILTIN);
+					if (icon_info)
+					{
+						icon_pixbuf = gtk_icon_info_load_icon(icon_info, &error);
+						g_object_unref(icon_info);
+					}
+				}
 
-			if (icon_pixbuf)
-			{
-				GdkPixbuf *resized_icon = gdk_pixbuf_scale_simple(icon_pixbuf, iconsize, iconsize, GDK_INTERP_BILINEAR);
-				g_object_unref(icon_pixbuf);
-				icon_pixbuf = resized_icon;
-			}
-			else
-			{
-				icon_pixbuf = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "application-x-executable", iconsize, 0, NULL);
+				if (icon_pixbuf)
+				{
+					GdkPixbuf *resized_icon = gdk_pixbuf_scale_simple(icon_pixbuf, iconsize, iconsize, GDK_INTERP_BILINEAR);
+					g_object_unref(icon_pixbuf);
+					icon_pixbuf = resized_icon;
+				}
+				else
+				{
+					icon_pixbuf = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "application-x-executable", iconsize, 0, NULL);
+				}
 			}
 
 			gchar *dir_name = g_strdup(app_dirs[i]);
 			GtkTreeIter app_iter;
 			gtk_tree_store_append(store, &app_iter, NULL);
 			gchar *merged_data = g_strdup_printf("%s%s%s", app_name, toexec, icon_name);
-			gtk_tree_store_set(store, &app_iter, 0, app_name, 1, toexec, 2, icon_pixbuf, 3, merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
+			gtk_tree_store_set(store, &app_iter, 0, app_name, 1, toexec, 2, showappicons ? icon_pixbuf : NULL, 3, merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
 			gtk_tree_view_set_tooltip_column(GTK_TREE_VIEW(treeview), 4);
 			gtk_icon_view_set_tooltip_column(GTK_ICON_VIEW(iconview), 4);
 
@@ -207,13 +211,17 @@ void load_apps(GtkTreeView *treeview)
 					{
 						gchar *action_name = g_key_file_get_locale_string(key_file, groups[j], "Name", NULL, NULL);
 						gchar *exec_value = g_key_file_get_string(key_file, groups[j], "Exec", NULL);
+						gchar *maction_name = NULL;
+
+						// This makes the text more readable when showappicons is 0
+						maction_name = g_strdup_printf(!showappicons ? "   %s" : "%s", action_name);
 
 						if (action_name && exec_value)
 						{
 							GtkTreeIter action_iter;
 							gtk_tree_store_append(store, &action_iter, &app_iter);
 							gchar *action_merged_data = g_strdup_printf("%s%s%s", action_name, exec_value, icon_name);
-							gtk_tree_store_set(store, &action_iter, 0, action_name, 1, exec_value, 2, icon_pixbuf, 3, action_merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
+							gtk_tree_store_set(store, &action_iter, 0, maction_name, 1, exec_value, 2, icon_pixbuf, 3, action_merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
 							g_free(action_name);
 							g_free(exec_value);
 							g_free(action_merged_data);

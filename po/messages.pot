@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-04 22:35-0600\n"
+"POT-Creation-Date: 2025-02-01 23:05-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,83 +73,87 @@ msgstr ""
 msgid "Use icon view"
 msgstr ""
 
-#: cfgmgr.h:84
-msgid "Close terminal when process finishes"
+#: cfgmgr.h:79
+msgid "Show app icons"
 msgstr ""
 
-#: cfgmgr.h:86
-msgid "Use scientific notation on math answers"
-msgstr ""
-
-#: cfgmgr.h:88
-msgid "Ignore \"NoDisplay\" apps"
-msgstr ""
-
-#: cfgmgr.h:90
-msgid "Ignore Terminal apps"
-msgstr ""
-
-#: cfgmgr.h:92
-msgid "Ignore \"OnlyShowIn\" Value"
-msgstr ""
-
-#: cfgmgr.h:95
-msgid "Use CSD Decoration"
-msgstr ""
-
-#: cfgmgr.h:97
-msgid "Hide CSD Title"
-msgstr ""
-
-#: cfgmgr.h:99
-msgid "Disable WM Decoration"
-msgstr ""
-
-#: cfgmgr.h:101
-msgid "Exit when unfocused"
-msgstr ""
-
-#: cfgmgr.h:103
-msgid "Allow only a single instance"
-msgstr ""
-
-#: cfgmgr.h:106
-msgid "Default"
-msgstr ""
-
-#: cfgmgr.h:107
-msgid "Apply"
-msgstr ""
-
-#: cfgmgr.h:111
-msgid "Elements"
-msgstr ""
-
-#: cfgmgr.h:112
-msgid "Search Engine:"
-msgstr ""
-
-#: cfgmgr.h:124
-msgid "View"
-msgstr ""
-
-#: cfgmgr.h:125
-msgid "Item order:"
-msgstr ""
-
-#: cfgmgr.h:127
+#: cfgmgr.h:83
 msgid "Icon Size"
 msgstr ""
 
-#: cfgmgr.h:129
+#: cfgmgr.h:86
 msgid "Quick Actions Size"
 msgstr ""
 
-#: cfgmgr.h:138
+#: cfgmgr.h:88
+msgid "Close terminal when process finishes"
+msgstr ""
+
+#: cfgmgr.h:90
+msgid "Use scientific notation on math answers"
+msgstr ""
+
+#: cfgmgr.h:92
+msgid "Ignore \"NoDisplay\" apps"
+msgstr ""
+
+#: cfgmgr.h:94
+msgid "Ignore Terminal apps"
+msgstr ""
+
+#: cfgmgr.h:96
+msgid "Ignore \"OnlyShowIn\" Value"
+msgstr ""
+
+#: cfgmgr.h:99
+msgid "Use CSD Decoration"
+msgstr ""
+
+#: cfgmgr.h:101
+msgid "Hide CSD Title"
+msgstr ""
+
+#: cfgmgr.h:103
+msgid "Disable WM Decoration"
+msgstr ""
+
+#: cfgmgr.h:105
+msgid "Exit when unfocused"
+msgstr ""
+
+#: cfgmgr.h:107
+msgid "Allow only a single instance"
+msgstr ""
+
+#: cfgmgr.h:110
+msgid "Default"
+msgstr ""
+
+#: cfgmgr.h:111
+msgid "Apply"
+msgstr ""
+
+#: cfgmgr.h:115
+msgid "Elements"
+msgstr ""
+
+#: cfgmgr.h:116
+msgid "Search Engine:"
+msgstr ""
+
+#: cfgmgr.h:128
+msgid "View"
+msgstr ""
+
+#: cfgmgr.h:129
+msgid "Item order:"
+msgstr ""
+
+#: cfgmgr.h:143
 msgid "Behavior"
 msgstr ""
 
-#: cfgmgr.h:147
+#: cfgmgr.h:152
 msgid "Window"
 msgstr ""
 
@@ -169,47 +173,47 @@ msgstr ""
 msgid "Add to Quick access"
 msgstr ""
 
-#: mainwindow.h:12
+#: mainwindow.h:10
 msgid "Project Website"
 msgstr ""
 
-#: mainwindow.h:24
+#: mainwindow.h:22
 msgid "Documentation available on Codeberg"
 msgstr ""
 
-#: mainwindow.h:27
+#: mainwindow.h:25
 msgid "Documentation available at:"
 msgstr ""
 
-#: mainwindow.h:89
+#: mainwindow.h:87
 msgid "Settings"
 msgstr ""
 
-#: mainwindow.h:93
+#: mainwindow.h:91
 msgid "Help"
 msgstr ""
 
-#: mainwindow.h:96
+#: mainwindow.h:94
 msgid "Online help"
 msgstr ""
 
-#: mainwindow.h:97
+#: mainwindow.h:95
 msgid "About"
 msgstr ""
 
-#: mainwindow.h:164
+#: mainwindow.h:162
 msgid "Run in Terminal"
 msgstr ""
 
-#: mainwindow.h:175
+#: mainwindow.h:173
 msgid "Search on Web"
 msgstr ""
 
-#: mainwindow.h:186
+#: mainwindow.h:184
 msgid "Open file/directory"
 msgstr ""
 
-#: mainwindow.h:223
+#: mainwindow.h:221
 msgid "Math Answer: "
 msgstr ""
 
