@@ -4,7 +4,7 @@ void on_submenu_item_about_selected(GtkMenuItem *menuitem, gpointer userdata)
 		window_set_icon(GTK_WINDOW(dialog), program_icon);
 	gtk_about_dialog_set_program_name(GTK_ABOUT_DIALOG(dialog), "SGLaucher");
 	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), pver);
-	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), "Copyright © 2024 ItsZariep");
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), "Copyright © 2025 ItsZariep");
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), "Simple GTK Launcher");
 	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), "https://codeberg.org/ItsZariep/SGLauncher");
 	gtk_about_dialog_set_website_label(GTK_ABOUT_DIALOG(dialog), _("Project Website"));
@@ -55,7 +55,7 @@ void create_window(void)
 
 	listbox2 = gtk_list_box_new();
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_widget_set_size_request(window, 640, 400);
+	gtk_widget_set_size_request(window, msizex, msizey);
 	gtk_window_set_title(GTK_WINDOW(window), "SGLauncher");
 	gtk_container_set_border_width(GTK_CONTAINER(window), 10);
 	g_signal_connect(window, "destroy", G_CALLBACK(exit_window), NULL);
@@ -231,22 +231,22 @@ void create_window(void)
 	gtk_widget_set_vexpand(scrolled_window, TRUE);
 	gtk_widget_set_hexpand(scrolled_window, TRUE);
 
-	if (order == 1)
+	if (mlayout == 1)
 	{
 		gtk_grid_attach(GTK_GRID(grid), scrolled_window, 0, 4, 1, 1);
 		gtk_grid_attach(GTK_GRID(grid), listbox2, 0, 3, 1, 1);
 	}
-	else if (order == 0)
+	else if (mlayout == 0)
 	{
 		gtk_grid_attach(GTK_GRID(grid), scrolled_window, 0, 3, 1, 1);
 		gtk_grid_attach(GTK_GRID(grid), listbox2, 0, 4, 1, 1);
 	}
-	else if (order == 2)
+	else if (mlayout == 2)
 	{
 		gtk_grid_attach(GTK_GRID(grid), scrolled_window, 0, 3, 1, 1);
 		gtk_grid_attach(GTK_GRID(grid), listbox2, 1, 3, 1, 1);
 	}
-	else if (order == 3)
+	else if (mlayout == 3)
 	{
 		gtk_grid_attach(GTK_GRID(grid), scrolled_window, 1, 3, 1, 1);
 		gtk_grid_attach(GTK_GRID(grid), listbox2, 0, 3, 1, 1);

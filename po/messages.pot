@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-01 23:05-0600\n"
+"POT-Creation-Date: 2025-02-04 09:54-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgid "Custom"
 msgstr ""
 
 #: cfgmgr.h:55
-msgid "Custom Search Engine:"
+msgid "Custom Search Engine"
 msgstr ""
 
 #: cfgmgr.h:57
@@ -105,56 +105,64 @@ msgstr ""
 msgid "Ignore \"OnlyShowIn\" Value"
 msgstr ""
 
-#: cfgmgr.h:99
+#: cfgmgr.h:103
 msgid "Use CSD Decoration"
 msgstr ""
 
-#: cfgmgr.h:101
+#: cfgmgr.h:105
 msgid "Hide CSD Title"
 msgstr ""
 
-#: cfgmgr.h:103
+#: cfgmgr.h:107
 msgid "Disable WM Decoration"
 msgstr ""
 
-#: cfgmgr.h:105
+#: cfgmgr.h:109
 msgid "Exit when unfocused"
 msgstr ""
 
-#: cfgmgr.h:107
+#: cfgmgr.h:111
 msgid "Allow only a single instance"
 msgstr ""
 
-#: cfgmgr.h:110
+#: cfgmgr.h:114
 msgid "Default"
 msgstr ""
 
-#: cfgmgr.h:111
+#: cfgmgr.h:115
 msgid "Apply"
 msgstr ""
 
-#: cfgmgr.h:115
+#: cfgmgr.h:119
 msgid "Elements"
 msgstr ""
 
-#: cfgmgr.h:116
-msgid "Search Engine:"
+#: cfgmgr.h:120
+msgid "Search Engine"
 msgstr ""
 
-#: cfgmgr.h:128
+#: cfgmgr.h:132
 msgid "View"
 msgstr ""
 
-#: cfgmgr.h:129
-msgid "Item order:"
+#: cfgmgr.h:133
+msgid "Menu layout"
 msgstr ""
 
-#: cfgmgr.h:143
+#: cfgmgr.h:147
 msgid "Behavior"
 msgstr ""
 
-#: cfgmgr.h:152
+#: cfgmgr.h:156
 msgid "Window"
+msgstr ""
+
+#: cfgmgr.h:157
+msgid "Window width"
+msgstr ""
+
+#: cfgmgr.h:159
+msgid "Window height"
 msgstr ""
 
 #: events.h:121 quickaccess.h:289

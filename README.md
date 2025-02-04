@@ -12,6 +12,8 @@ Simple GTK Launcher
 - [x] Optional icon view
 - [x] A simple configuration tool
 
+ See all available settings in the [documentation](https://codeberg.org/ItsZariep/SGLauncher/wiki/Settings)
+
 ## Build
 - All:
 ```

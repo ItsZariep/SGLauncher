@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-01 22:41-0600\n"
+"POT-Creation-Date: 2025-02-04 09:54-0600\n"
 "PO-Revision-Date: 2024-11-27 08:24-0600\n"
 "Last-Translator: ItsZariep <itszariep@pc>\n"
 "Language-Team: Spanish <es@tp.org.es>\n"
@@ -22,7 +22,8 @@ msgid "Custom"
 msgstr "Personalizado"
 
 #: cfgmgr.h:55
-msgid "Custom Search Engine:"
+#, fuzzy
+msgid "Custom Search Engine"
 msgstr "Motor de búsqueda personalizado"
 
 #: cfgmgr.h:57
@@ -107,56 +108,67 @@ msgstr "Ignorar aplicaciones de terminal"
 msgid "Ignore \"OnlyShowIn\" Value"
 msgstr "Ignorar el valor \"OnlyShowIn\""
 
-#: cfgmgr.h:99
+#: cfgmgr.h:103
 msgid "Use CSD Decoration"
 msgstr "Usar decoración CSD"
 
-#: cfgmgr.h:101
+#: cfgmgr.h:105
 msgid "Hide CSD Title"
 msgstr "Esconder titulo CSD"
 
-#: cfgmgr.h:103
+#: cfgmgr.h:107
 msgid "Disable WM Decoration"
 msgstr "Deshabilitar decoración por WM"
 
-#: cfgmgr.h:105
+#: cfgmgr.h:109
 msgid "Exit when unfocused"
 msgstr "Salir cuando se pierda el foco"
 
-#: cfgmgr.h:107
+#: cfgmgr.h:111
 msgid "Allow only a single instance"
 msgstr "Permitir solo una instancia"
 
-#: cfgmgr.h:110
+#: cfgmgr.h:114
 msgid "Default"
 msgstr "Por defecto"
 
-#: cfgmgr.h:111
+#: cfgmgr.h:115
 msgid "Apply"
 msgstr "Aplicar"
 
-#: cfgmgr.h:115
+#: cfgmgr.h:119
 msgid "Elements"
 msgstr "Elementos"
 
-#: cfgmgr.h:116
-msgid "Search Engine:"
+#: cfgmgr.h:120
+#, fuzzy
+msgid "Search Engine"
 msgstr "Motor de búsqueda"
 
-#: cfgmgr.h:128
+#: cfgmgr.h:132
 msgid "View"
 msgstr "Vista"
 
-#: cfgmgr.h:129
-msgid "Item order:"
-msgstr "Orden de elementos"
+#: cfgmgr.h:133
+msgid "Menu layout"
+msgstr ""
 
-#: cfgmgr.h:143
+#: cfgmgr.h:147
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: cfgmgr.h:152
+#: cfgmgr.h:156
 msgid "Window"
+msgstr "Ventana"
+
+#: cfgmgr.h:157
+#, fuzzy
+msgid "Window width"
+msgstr "Ventana"
+
+#: cfgmgr.h:159
+#, fuzzy
+msgid "Window height"
 msgstr "Ventana"
 
 #: events.h:121 quickaccess.h:289
@@ -236,3 +248,6 @@ msgstr "Mover a la derecha"
 #, fuzzy
 msgid "Remove from Quick access"
 msgstr "Remover de Acciones rapidas"
+
+#~ msgid "Item order:"
+#~ msgstr "Orden de elementos"

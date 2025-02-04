@@ -52,7 +52,7 @@ void showcfg(void)
 			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(webcombo), "Google");
 			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(webcombo), "Bing");
 			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(webcombo), _("Custom"));
-		weblabel = gtk_label_new(_("Custom Search Engine:"));
+		weblabel = gtk_label_new(_("Custom Search Engine"));
 			webctm = gtk_entry_new();
 		wshowcmd = gtk_check_button_new_with_label(_("Show \"Run in Terminal\" entry"));
 			gtk_widget_set_direction(wshowcmd, GTK_TEXT_DIR_RTL);
@@ -63,11 +63,11 @@ void showcfg(void)
 		wshowcalc = gtk_check_button_new_with_label (_("Show Math answer when numbers are typed"));
 			gtk_widget_set_direction(wshowcalc, GTK_TEXT_DIR_RTL);
 
-		worder = gtk_combo_box_text_new();
-			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(worder), _("Horizontal - Apps at top"));
-			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(worder), _("Horizontal - Apps at bottom"));
-			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(worder), _("Vertical - Apps at left"));
-			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(worder), _("Vertical - Apps at right"));
+		wmlayout = gtk_combo_box_text_new();
+			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(wmlayout), _("Horizontal - Apps at top"));
+			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(wmlayout), _("Horizontal - Apps at bottom"));
+			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(wmlayout), _("Vertical - Apps at left"));
+			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(wmlayout), _("Vertical - Apps at right"));
 		wshowda = gtk_check_button_new_with_label(_("Show Desktop actions"));
 			gtk_widget_set_direction(wshowda, GTK_TEXT_DIR_RTL);
 		wentryonbottom = gtk_check_button_new_with_label(_("Search entry on bottom"));
@@ -96,6 +96,10 @@ void showcfg(void)
 		wignoreonlyshowin  = gtk_check_button_new_with_label(_("Ignore \"OnlyShowIn\" Value"));
 			gtk_widget_set_direction(wignoreonlyshowin, GTK_TEXT_DIR_RTL);
 
+		GtkAdjustment *msizex_adjustment = gtk_adjustment_new(1, 0, 16384, 1, 1, 0);
+			wmsizex = gtk_spin_button_new(msizex_adjustment, 1, 0);
+		GtkAdjustment *msizey_adjustment = gtk_adjustment_new(1, 0, 16384, 1, 1, 0);
+			wmsizey= gtk_spin_button_new(msizey_adjustment, 1, 0);
 		wusecsd = gtk_check_button_new_with_label(_("Use CSD Decoration"));
 			gtk_widget_set_direction(wusecsd, GTK_TEXT_DIR_RTL);
 		whidetitle = gtk_check_button_new_with_label(_("Hide CSD Title"));
@@ -113,7 +117,7 @@ void showcfg(void)
 	GtkWidget *tab_elements = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_elements), TRUE);
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), tab_elements, gtk_label_new(_("Elements")));
-		gtk_grid_attach(GTK_GRID(tab_elements), gtk_label_new(_("Search Engine:")), 0, 0, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_elements), gtk_label_new(_("Search Engine")), 0, 0, 1, 1);
 			gtk_grid_attach(GTK_GRID(tab_elements), webcombo, 1, 0, 1, 1);
 
 		gtk_grid_attach(GTK_GRID(tab_elements), weblabel, 0, 1, 1, 1);
@@ -126,8 +130,8 @@ void showcfg(void)
 	GtkWidget *tab_view = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_view), TRUE);
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), tab_view, gtk_label_new(_("View")));
-		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Item order:")), 0, 0, 1, 1);
-		gtk_grid_attach(GTK_GRID(tab_view), worder, 1, 0, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), gtk_label_new(_("Menu layout")), 0, 0, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wmlayout, 1, 0, 1, 1);
 		gtk_grid_attach(GTK_GRID(tab_view), wiconsize_label, 0, 1, 1, 1);
 			gtk_grid_attach(GTK_GRID(tab_view), wiconsize, 1, 1, 1, 1);
 		gtk_grid_attach(GTK_GRID(tab_view), wqasize_label, 0, 2, 1, 1);
@@ -150,11 +154,15 @@ void showcfg(void)
 	GtkWidget *tab_window = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_window), TRUE);
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), tab_window, gtk_label_new(_("Window")));
-		gtk_grid_attach(GTK_GRID(tab_window), wusecsd, 0, 1, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_window), whidetitle, 0, 2, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_window), whidewindeco, 0, 3, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_window), wexitwhenunfocused, 0, 4, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_window), wsingleinstance, 0, 5, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), gtk_label_new(_("Window width")), 0, 0, 1, 1);
+			gtk_grid_attach(GTK_GRID(tab_window), wmsizex, 1, 0, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), gtk_label_new(_("Window height")), 0, 1, 1, 1);
+			gtk_grid_attach(GTK_GRID(tab_window), wmsizey, 1, 1, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), wusecsd, 0, 2, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), whidetitle, 0, 3, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), whidewindeco, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), wexitwhenunfocused, 0, 5, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_window), wsingleinstance, 0, 6, 2, 1);
 
 	gtk_box_pack_start(GTK_BOX(confbox), notebook, TRUE, TRUE, 0);
 
@@ -194,9 +202,11 @@ void showcfg(void)
 	gtk_entry_set_text(GTK_ENTRY(webctm), cengine);
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(webcombo), wengine);
-	gtk_combo_box_set_active(GTK_COMBO_BOX(worder), order);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(wmlayout), mlayout);
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(wiconsize), iconsize);
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(wqasize), qasize);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(wmsizex), msizex);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(wmsizey), msizey);
 
 	g_signal_connect(G_OBJECT(webcombo), "changed", G_CALLBACK(on_webcombo_changed), webctm);
 

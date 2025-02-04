@@ -49,6 +49,8 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", 1);
 		g_key_file_set_integer(config, "Behavior", "ignoreterminal", 0);
 		g_key_file_set_integer(config, "Behavior", "ignoreonlyshowin", 0);
+		g_key_file_set_integer(config, "Window", "msizex", 1);
+		g_key_file_set_integer(config, "Window", "msizey", 1);
 		g_key_file_set_integer(config, "Window", "usecsd", 1);
 		g_key_file_set_integer(config, "Window", "hidetitle", 0);
 		g_key_file_set_integer(config, "Window", "hidewindeco", 0);
@@ -73,10 +75,12 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		ignoreterminal = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignoreterminal));
 		exitwhenunfocused = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wexitwhenunfocused));
 		singleinstance = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wsingleinstance));
+		msizex = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wmsizex));
+		msizey = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wmsizey));
 		usecsd = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wusecsd));
 		hidetitle = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(whidetitle));
 		hidewindeco = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(whidewindeco));
-		order = gtk_combo_box_get_active(GTK_COMBO_BOX(worder));
+		mlayout = gtk_combo_box_get_active(GTK_COMBO_BOX(wmlayout));
 		wengine = gtk_combo_box_get_active(GTK_COMBO_BOX(webcombo));
 		iconsize = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wiconsize));
 		qasize = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wqasize));
@@ -94,12 +98,14 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "View", "showqa", showqa);
 		g_key_file_set_integer(config, "View", "useiconview", useiconview);
 		g_key_file_set_integer(config, "View", "showda", showda);
-		g_key_file_set_integer(config, "View", "order", order);
+		g_key_file_set_integer(config, "View", "mlayout", mlayout);
 		g_key_file_set_integer(config, "Behavior", "closeterm", closeterm);
 		g_key_file_set_integer(config, "Behavior", "showscientific", showscientific);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", ignorenodisplay);
 		g_key_file_set_integer(config, "Behavior", "ignoreterminal", ignoreterminal);
 		g_key_file_set_integer(config, "Behavior", "ignoreonlyshowin", ignoreonlyshowin);
+		g_key_file_set_integer(config, "Window", "msizex", msizex);
+		g_key_file_set_integer(config, "Window", "msizey", msizey);
 		g_key_file_set_integer(config, "Window", "usecsd", usecsd);
 		g_key_file_set_integer(config, "Window", "hidetitle", hidetitle);
 		g_key_file_set_integer(config, "Window", "hidewindeco", hidewindeco);
@@ -156,8 +162,8 @@ void readconf(void)
 			showcalc = g_key_file_get_integer(key_file, "Elements", "showcalc", NULL);
 
 
-		if (g_key_file_has_key(key_file, "View", "order", NULL))
-			order = g_key_file_get_integer(key_file, "View", "order", NULL);
+		if (g_key_file_has_key(key_file, "View", "mlayout", NULL))
+			mlayout = g_key_file_get_integer(key_file, "View", "mlayout", NULL);
 		if (g_key_file_has_key(key_file, "View", "showappicons", NULL))
 			showappicons = g_key_file_get_integer(key_file, "View", "showappicons", NULL);
 		if (g_key_file_has_key(key_file, "View", "showqa", NULL))
@@ -191,6 +197,10 @@ void readconf(void)
 		if (g_key_file_has_key(key_file, "Behavior", "ignoreonlyshowin", NULL))
 			ignoreonlyshowin = g_key_file_get_integer(key_file, "Behavior", "ignoreonlyshowin", NULL);
 
+		if (g_key_file_has_key(key_file, "Window", "msizex", NULL))
+			msizex = g_key_file_get_integer(key_file, "Window", "msizex", NULL);
+		if (g_key_file_has_key(key_file, "Window", "msizey", NULL))
+			msizey = g_key_file_get_integer(key_file, "Window", "msizey", NULL);
 
 		if (g_key_file_has_key(key_file, "Window", "usecsd", NULL))
 		{
