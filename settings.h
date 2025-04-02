@@ -43,7 +43,6 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "View", "useiconview", 0);
 		g_key_file_set_integer(config, "View", "showappicons", 1);
 		g_key_file_set_integer(config, "View", "showda", 1);
-		g_key_file_set_integer(config, "View", "order", 0);
 		g_key_file_set_integer(config, "Behavior", "closeterm", 0);
 		g_key_file_set_integer(config, "Behavior", "showscientific", 1);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", 1);

@@ -64,7 +64,7 @@ static void on_entry_changed(GtkEntry *target, FilterData *filterdata)
 
 	if (filterdata->filter_text != NULL)
 	{
-		if (strlen(filterdata->filter_text) > 0 && isdigit(filterdata->filter_text[0])) 
+		if (strlen(filterdata->filter_text) > 0) 
 		{
 			double minscientific = 999999;
 			double result = evaluate((char*)filterdata->filter_text);
