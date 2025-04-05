@@ -20,7 +20,7 @@ Simple GTK Launcher
 git clone https://codeberg.org/itszariep/sglauncher
 ```
 ```
-cd sglauncher
+cd sglauncher/src
 ```
 - Build
 ```
