@@ -163,7 +163,15 @@ void updateconf(GtkButton *widget, gpointer user_data)
 
 	g_key_file_unref(config);
 
-	restarting = 1;
+	if (sgcfg == 0)
+	{
+		restarting = 1;
+	}
+	else
+	{
+		restarting = 0;
+	}
+
 	exit_window(window);
 }
 

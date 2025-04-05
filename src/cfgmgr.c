@@ -53,7 +53,14 @@ void on_webcombo_changed(GtkComboBox *widget, gpointer user_data)
 
 void on_dialog_destroy(GtkWidget *widget, gpointer data)
 {
+	if (sgcfg == 1)
+	{
+		restarting = 0;
+		exit_window(window);
+	}
+
 	callconfig = 0;
+	ismoving = 0;
 }
 
 void togglewidget(GtkWidget *input, gpointer data)
@@ -72,6 +79,7 @@ void togglewidget(GtkWidget *input, gpointer data)
 void showcfg(void)
 {
 	callconfig = 1;
+	ismoving = 1;
 	cfgdialog = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(cfgdialog), "Settings - SGLauncher");
 	gtk_container_set_border_width(GTK_CONTAINER(cfgdialog), 10);
