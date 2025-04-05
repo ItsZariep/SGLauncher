@@ -30,6 +30,8 @@ GtkWidget *wqasize;
 GtkWidget *wshowappicons;
 GtkWidget *wmsizex;
 GtkWidget *wmsizey;
+GtkWidget *cancelbtn;
+GtkWidget *okbtn;
 
 guint callconfig = 0;
 
@@ -49,6 +51,19 @@ void on_webcombo_changed(GtkComboBox *widget, gpointer user_data)
 	}
 
 	g_free((gpointer) active_text);
+}
+
+void on_cancelbutton_clicked(GtkWidget *widget, gpointer data)
+{
+	callconfig = 0;
+	ismoving = 0;
+
+	if (sgcfg == 1)
+	{
+		restarting = 0;
+		exit_window(window);
+	}
+	gtk_widget_destroy(cfgdialog);
 }
 
 void on_dialog_destroy(GtkWidget *widget, gpointer data)
@@ -155,6 +170,8 @@ void showcfg(void)
 			gtk_widget_set_direction(wsingleinstance, GTK_TEXT_DIR_RTL);
 
 		defbtn = gtk_button_new_with_label(_("Default"));
+		okbtn = gtk_button_new_with_label(_("OK"));
+		cancelbtn = gtk_button_new_with_label(_("Cancel"));
 		applybtn = gtk_button_new_with_label(_("Apply"));
 
 	GtkWidget *tab_elements = gtk_grid_new();
@@ -211,7 +228,9 @@ void showcfg(void)
 
 	GtkWidget *applybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
 		gtk_box_pack_end(GTK_BOX(applybox), applybtn, FALSE, FALSE, 2);
-		gtk_box_pack_end(GTK_BOX(applybox), defbtn, FALSE, FALSE, 2);
+		gtk_box_pack_end(GTK_BOX(applybox), cancelbtn, FALSE, FALSE, 2);
+		gtk_box_pack_end(GTK_BOX(applybox), okbtn, FALSE, FALSE, 2);
+		gtk_box_pack_start(GTK_BOX(applybox), defbtn, FALSE, FALSE, 2);
 
 	gtk_box_pack_start(GTK_BOX(confbox), applybox, FALSE, FALSE, 0);
 	gtk_container_add(GTK_CONTAINER(cfgdialog), confbox);
@@ -264,7 +283,9 @@ void showcfg(void)
 	g_signal_connect(wshowqa, "clicked", G_CALLBACK(togglewidget), wqasize_label);
 
 	g_signal_connect(defbtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(1));
+	g_signal_connect(cancelbtn, "clicked", G_CALLBACK(on_cancelbutton_clicked), NULL);
 	g_signal_connect(applybtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(0));
+	g_signal_connect(okbtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(2));
 
 	gtk_window_set_position(GTK_WINDOW(cfgdialog), GTK_WIN_POS_CENTER);
 	gtk_widget_show_all(cfgdialog);

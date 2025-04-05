@@ -5,7 +5,7 @@ VERSION := $(shell git log -n 1 --format="%cd.%h" --date=format-local:'%Y%m%d')
 else ifeq ($(BRANCH),stable)
 VERSION := $(shell cat VERSION)
 else
-VERSION := unknown
+VERSION := $(shell cat VERSION)
 endif
 
 CFLAGS = `pkg-config --cflags gtk+-3.0` -Dpver=\"$(VERSION)\"

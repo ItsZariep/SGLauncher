@@ -43,6 +43,7 @@ guint msizex = 640;
 guint msizey = 400;
 guint restarting = 0;
 
+guint disableunfocus = 0;
 void updateconf(GtkButton *widget, gpointer user_data) 
 {
 	gint reset = GPOINTER_TO_INT(user_data);
@@ -58,7 +59,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_clear_error(&error);
 	}
 
-	if (reset) 
+	if (reset == 1) 
 	{
 		GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_OK_CANCEL,
@@ -163,15 +164,23 @@ void updateconf(GtkButton *widget, gpointer user_data)
 
 	g_key_file_unref(config);
 
-	if (sgcfg == 0)
+	if (reset == 0)
 	{
-		restarting = 1;
+		if (sgcfg == 0)
+		{
+			restarting = 1;
+		}
+		else
+		{
+			restarting = 0;
+		}
 	}
 	else
 	{
-		restarting = 0;
+		restarting = 1;
 	}
 
+	disableunfocus = 1;
 	exit_window(window);
 }
 

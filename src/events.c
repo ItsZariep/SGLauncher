@@ -3,6 +3,7 @@
 guint ismoving = 0;
 void exit_window(GtkWidget *window)
 {
+
 	if (restarting)
 	{
 		gtk_widget_destroy(window);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 12:06-0600\n"
+"POT-Creation-Date: 2025-04-05 12:44-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,167 +17,175 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cfgmgr.c:97
+#: cfgmgr.c:112
 msgid "Custom"
 msgstr ""
 
-#: cfgmgr.c:98
+#: cfgmgr.c:113
 msgid "Custom Search Engine"
 msgstr ""
 
-#: cfgmgr.c:100
+#: cfgmgr.c:115
 msgid "Show \"Run in Terminal\" entry"
 msgstr ""
 
-#: cfgmgr.c:102
+#: cfgmgr.c:117
 msgid "Show \"Search on Web\" entry"
 msgstr ""
 
-#: cfgmgr.c:104
+#: cfgmgr.c:119
 msgid "Show \"Open File/Directory\" entry"
 msgstr ""
 
-#: cfgmgr.c:106
+#: cfgmgr.c:121
 msgid "Show Math answer when numbers are typed"
 msgstr ""
 
-#: cfgmgr.c:110
+#: cfgmgr.c:125
 msgid "Horizontal - Apps at top"
 msgstr ""
 
-#: cfgmgr.c:111
+#: cfgmgr.c:126
 msgid "Horizontal - Apps at bottom"
 msgstr ""
 
-#: cfgmgr.c:112
+#: cfgmgr.c:127
 msgid "Vertical - Apps at left"
 msgstr ""
 
-#: cfgmgr.c:113
+#: cfgmgr.c:128
 msgid "Vertical - Apps at right"
 msgstr ""
 
-#: cfgmgr.c:114
+#: cfgmgr.c:129
 msgid "Show Desktop actions"
 msgstr ""
 
-#: cfgmgr.c:116
+#: cfgmgr.c:131
 msgid "Search entry on bottom"
 msgstr ""
 
-#: cfgmgr.c:118
+#: cfgmgr.c:133
 msgid "Show quick actions"
 msgstr ""
 
-#: cfgmgr.c:120
+#: cfgmgr.c:135
 msgid "Use icon view"
 msgstr ""
 
-#: cfgmgr.c:122
+#: cfgmgr.c:137
 msgid "Show app icons"
 msgstr ""
 
-#: cfgmgr.c:126
+#: cfgmgr.c:141
 msgid "Icon Size"
 msgstr ""
 
-#: cfgmgr.c:129
+#: cfgmgr.c:144
 msgid "Quick Actions Size"
 msgstr ""
 
-#: cfgmgr.c:131
+#: cfgmgr.c:146
 msgid "Close terminal when process finishes"
 msgstr ""
 
-#: cfgmgr.c:133
+#: cfgmgr.c:148
 msgid "Use scientific notation on math answers"
 msgstr ""
 
-#: cfgmgr.c:135
+#: cfgmgr.c:150
 msgid "Ignore \"NoDisplay\" apps"
 msgstr ""
 
-#: cfgmgr.c:137
+#: cfgmgr.c:152
 msgid "Ignore Terminal apps"
 msgstr ""
 
-#: cfgmgr.c:139
+#: cfgmgr.c:154
 msgid "Ignore \"OnlyShowIn\" Value"
 msgstr ""
 
-#: cfgmgr.c:146
+#: cfgmgr.c:161
 msgid "Use CSD Decoration"
 msgstr ""
 
-#: cfgmgr.c:148
+#: cfgmgr.c:163
 msgid "Hide CSD Title"
 msgstr ""
 
-#: cfgmgr.c:150
+#: cfgmgr.c:165
 msgid "Disable WM Decoration"
 msgstr ""
 
-#: cfgmgr.c:152
+#: cfgmgr.c:167
 msgid "Exit when unfocused"
 msgstr ""
 
-#: cfgmgr.c:154
+#: cfgmgr.c:169
 msgid "Allow only a single instance"
 msgstr ""
 
-#: cfgmgr.c:157
+#: cfgmgr.c:172
 msgid "Default"
 msgstr ""
 
-#: cfgmgr.c:158
-msgid "Apply"
+#: cfgmgr.c:173
+msgid "OK"
 msgstr ""
 
-#: cfgmgr.c:162
-msgid "Elements"
-msgstr ""
-
-#: cfgmgr.c:163
-msgid "Search Engine"
+#: cfgmgr.c:174
+msgid "Cancel"
 msgstr ""
 
 #: cfgmgr.c:175
+msgid "Apply"
+msgstr ""
+
+#: cfgmgr.c:179
+msgid "Elements"
+msgstr ""
+
+#: cfgmgr.c:180
+msgid "Search Engine"
+msgstr ""
+
+#: cfgmgr.c:192
 msgid "View"
 msgstr ""
 
-#: cfgmgr.c:176
+#: cfgmgr.c:193
 msgid "Menu layout"
 msgstr ""
 
-#: cfgmgr.c:190
+#: cfgmgr.c:207
 msgid "Behavior"
 msgstr ""
 
-#: cfgmgr.c:199
+#: cfgmgr.c:216
 msgid "Window"
 msgstr ""
 
-#: cfgmgr.c:200
+#: cfgmgr.c:217
 msgid "Window width"
 msgstr ""
 
-#: cfgmgr.c:202
+#: cfgmgr.c:219
 msgid "Window height"
 msgstr ""
 
-#: events.c:122 quickaccess.c:291
+#: events.c:123 quickaccess.c:291
 msgid "Run"
 msgstr ""
 
-#: events.c:123
+#: events.c:124
 msgid "Run in terminal"
 msgstr ""
 
-#: events.c:124
+#: events.c:125
 msgid "Show entry in file manager"
 msgstr ""
 
-#: events.c:125
+#: events.c:126
 msgid "Add to Quick access"
 msgstr ""
 

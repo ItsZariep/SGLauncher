@@ -198,25 +198,28 @@ gboolean on_button_press(GtkWidget *widget, GdkEventButton *event, gpointer data
 
 gboolean close_window_if_unfocused(gpointer widget)
 {
-	if (gtk_widget_get_visible(submenu) || gtk_widget_get_visible(dialog) || ismoving)
+	if (disableunfocus == 0)
 	{
-		ismoving = 0;
+		if (gtk_widget_get_visible(submenu) || gtk_widget_get_visible(dialog) || ismoving)
+		{
+			ismoving = 0;
+			return FALSE;
+		}
+
+		GdkModifierType modifier_state = gdk_keymap_get_modifier_state(gdk_keymap_get_for_display(gdk_display_get_default()));
+		GdkSeat *seat = gdk_display_get_default_seat(gdk_display_get_default());
+		GdkDevice *pointer = gdk_seat_get_pointer(seat);
+		guint button_state = 0;
+
+		gdk_device_get_state(pointer, gtk_widget_get_window(GTK_WIDGET(widget)), NULL, &button_state);
+
+		if (!gtk_window_has_toplevel_focus(GTK_WINDOW(widget)) && button_state == 0 &&
+			!(modifier_state & (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK | GDK_SUPER_MASK)))
+		{
+			gtk_widget_destroy(GTK_WIDGET(widget));
+		}
 		return FALSE;
 	}
-
-	GdkModifierType modifier_state = gdk_keymap_get_modifier_state(gdk_keymap_get_for_display(gdk_display_get_default()));
-	GdkSeat *seat = gdk_display_get_default_seat(gdk_display_get_default());
-	GdkDevice *pointer = gdk_seat_get_pointer(seat);
-	guint button_state = 0;
-
-	gdk_device_get_state(pointer, gtk_widget_get_window(GTK_WIDGET(widget)), NULL, &button_state);
-
-	if (!gtk_window_has_toplevel_focus(GTK_WINDOW(widget)) && button_state == 0 &&
-		!(modifier_state & (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_MOD1_MASK | GDK_SUPER_MASK)))
-	{
-		gtk_widget_destroy(GTK_WIDGET(widget));
-	}
-	return FALSE;
 }
 
 gboolean on_focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer user_data)

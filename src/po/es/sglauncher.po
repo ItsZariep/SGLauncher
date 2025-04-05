@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 12:05-0600\n"
+"POT-Creation-Date: 2025-04-05 12:44-0600\n"
 "PO-Revision-Date: 2024-11-27 08:24-0600\n"
 "Last-Translator: ItsZariep <itszariep@pc>\n"
 "Language-Team: Spanish <es@tp.org.es>\n"
@@ -17,173 +17,181 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cfgmgr.c:97
+#: cfgmgr.c:112
 msgid "Custom"
 msgstr "Personalizado"
 
-#: cfgmgr.c:98
+#: cfgmgr.c:113
 #, fuzzy
 msgid "Custom Search Engine"
 msgstr "Motor de búsqueda personalizado"
 
-#: cfgmgr.c:100
+#: cfgmgr.c:115
 msgid "Show \"Run in Terminal\" entry"
 msgstr "Mostrar la entrada \"Ejecutar en la terminal\""
 
-#: cfgmgr.c:102
+#: cfgmgr.c:117
 msgid "Show \"Search on Web\" entry"
 msgstr "Mostrar la entrada \"Buscar en internet\""
 
-#: cfgmgr.c:104
+#: cfgmgr.c:119
 msgid "Show \"Open File/Directory\" entry"
 msgstr "Mostrar la entrada \"Abrir archivo/directorio\""
 
-#: cfgmgr.c:106
+#: cfgmgr.c:121
 msgid "Show Math answer when numbers are typed"
 msgstr "Mostrar respuestas matemáticas cuando un numero esté escrito"
 
-#: cfgmgr.c:110
+#: cfgmgr.c:125
 msgid "Horizontal - Apps at top"
 msgstr "Horizontal - Aplicaciones arriba"
 
-#: cfgmgr.c:111
+#: cfgmgr.c:126
 msgid "Horizontal - Apps at bottom"
 msgstr "Horizontal - Aplicaciones abajo"
 
-#: cfgmgr.c:112
+#: cfgmgr.c:127
 msgid "Vertical - Apps at left"
 msgstr "Vertical - Aplicaciones a la izquierda"
 
-#: cfgmgr.c:113
+#: cfgmgr.c:128
 msgid "Vertical - Apps at right"
 msgstr "Vertical - Aplicaciones a la derecha"
 
-#: cfgmgr.c:114
+#: cfgmgr.c:129
 msgid "Show Desktop actions"
 msgstr "Mostrar acciones de las aplicaciones"
 
-#: cfgmgr.c:116
+#: cfgmgr.c:131
 msgid "Search entry on bottom"
 msgstr "Barra de busqueda abajo"
 
-#: cfgmgr.c:118
+#: cfgmgr.c:133
 msgid "Show quick actions"
 msgstr "Mostrar acciones rapidas"
 
-#: cfgmgr.c:120
+#: cfgmgr.c:135
 msgid "Use icon view"
 msgstr "Usar vista de iconos"
 
-#: cfgmgr.c:122
+#: cfgmgr.c:137
 #, fuzzy
 msgid "Show app icons"
 msgstr "Mostrar iconos de las apps"
 
-#: cfgmgr.c:126
+#: cfgmgr.c:141
 msgid "Icon Size"
 msgstr "Tamaño de iconos"
 
-#: cfgmgr.c:129
+#: cfgmgr.c:144
 #, fuzzy
 msgid "Quick Actions Size"
 msgstr "Tamaño de las acciones rapidas"
 
-#: cfgmgr.c:131
+#: cfgmgr.c:146
 msgid "Close terminal when process finishes"
 msgstr "Cerrar terminal cuando el proceso finalice"
 
-#: cfgmgr.c:133
+#: cfgmgr.c:148
 msgid "Use scientific notation on math answers"
 msgstr "Usar notación científica en las respuestas matemáticas"
 
-#: cfgmgr.c:135
+#: cfgmgr.c:150
 msgid "Ignore \"NoDisplay\" apps"
 msgstr "Ignorar aplicaciones ocultas"
 
-#: cfgmgr.c:137
+#: cfgmgr.c:152
 msgid "Ignore Terminal apps"
 msgstr "Ignorar aplicaciones de terminal"
 
-#: cfgmgr.c:139
+#: cfgmgr.c:154
 msgid "Ignore \"OnlyShowIn\" Value"
 msgstr "Ignorar el valor \"OnlyShowIn\""
 
-#: cfgmgr.c:146
+#: cfgmgr.c:161
 msgid "Use CSD Decoration"
 msgstr "Usar decoración CSD"
 
-#: cfgmgr.c:148
+#: cfgmgr.c:163
 msgid "Hide CSD Title"
 msgstr "Esconder titulo CSD"
 
-#: cfgmgr.c:150
+#: cfgmgr.c:165
 msgid "Disable WM Decoration"
 msgstr "Deshabilitar decoración por WM"
 
-#: cfgmgr.c:152
+#: cfgmgr.c:167
 msgid "Exit when unfocused"
 msgstr "Salir cuando se pierda el foco"
 
-#: cfgmgr.c:154
+#: cfgmgr.c:169
 msgid "Allow only a single instance"
 msgstr "Permitir solo una instancia"
 
-#: cfgmgr.c:157
+#: cfgmgr.c:172
 msgid "Default"
 msgstr "Por defecto"
 
-#: cfgmgr.c:158
+#: cfgmgr.c:173
+msgid "OK"
+msgstr ""
+
+#: cfgmgr.c:174
+msgid "Cancel"
+msgstr ""
+
+#: cfgmgr.c:175
 msgid "Apply"
 msgstr "Aplicar"
 
-#: cfgmgr.c:162
+#: cfgmgr.c:179
 msgid "Elements"
 msgstr "Elementos"
 
-#: cfgmgr.c:163
+#: cfgmgr.c:180
 #, fuzzy
 msgid "Search Engine"
 msgstr "Motor de búsqueda"
 
-#: cfgmgr.c:175
+#: cfgmgr.c:192
 msgid "View"
 msgstr "Vista"
 
-#: cfgmgr.c:176
+#: cfgmgr.c:193
 msgid "Menu layout"
 msgstr ""
 
-#: cfgmgr.c:190
+#: cfgmgr.c:207
 msgid "Behavior"
 msgstr "Comportamiento"
 
-#: cfgmgr.c:199
+#: cfgmgr.c:216
 msgid "Window"
 msgstr "Ventana"
 
-#: cfgmgr.c:200
+#: cfgmgr.c:217
 #, fuzzy
 msgid "Window width"
 msgstr "Ventana"
 
-#: cfgmgr.c:202
+#: cfgmgr.c:219
 #, fuzzy
 msgid "Window height"
 msgstr "Ventana"
 
-#: events.c:122 quickaccess.c:291
+#: events.c:123 quickaccess.c:291
 msgid "Run"
 msgstr "Ejecutar"
 
-#: events.c:123
+#: events.c:124
 msgid "Run in terminal"
 msgstr "Ejecutar en un terminal"
 
-#: events.c:124
+#: events.c:125
 msgid "Show entry in file manager"
 msgstr "Mostrar entrada en el gestor de archivos"
 
-#: events.c:125
+#: events.c:126
 msgid "Add to Quick access"
 msgstr "Añadir a Acciones rapidas"
 

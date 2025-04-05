@@ -29,6 +29,7 @@ extern const gchar *terminal;
 extern const gchar *deskenv;
 extern guint restarting;
 extern guint ismoving;
+extern guint disableunfocus;
 
 #include "settings.h"
 #include "mainwindow.h"
