@@ -226,7 +226,10 @@ void showcfg(void)
 	gtk_box_pack_start(GTK_BOX(confbox), notebook, TRUE, TRUE, 0);
 
 	GtkWidget *applybox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-		gtk_box_pack_end(GTK_BOX(applybox), applybtn, FALSE, FALSE, 2);
+		if (!sgcfg)
+		{
+			gtk_box_pack_end(GTK_BOX(applybox), applybtn, FALSE, FALSE, 2);
+		}
 		gtk_box_pack_end(GTK_BOX(applybox), cancelbtn, FALSE, FALSE, 2);
 		gtk_box_pack_end(GTK_BOX(applybox), okbtn, FALSE, FALSE, 2);
 		gtk_box_pack_start(GTK_BOX(applybox), defbtn, FALSE, FALSE, 2);

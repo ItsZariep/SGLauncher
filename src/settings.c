@@ -164,21 +164,12 @@ void updateconf(GtkButton *widget, gpointer user_data)
 
 	g_key_file_unref(config);
 
-	if (reset == 2)
+
+	restarting = (sgcfg == 0) ? 1 : 0;
+
+	if (reset == 0)
 	{
-		if (sgcfg == 0)
-		{
-			restarting = 1;
-		}
-		else
-		{
-			restarting = 0;
-		}
 		gtk_widget_destroy(cfgdialog);
-	}
-	else
-	{
-		restarting = 1;
 	}
 
 	disableunfocus = 1;
