@@ -346,6 +346,8 @@ void create_window(void)
 		gtk_widget_show_all(window);
 		gtk_widget_hide(mathtext);
 		gtk_widget_hide(listbox2);
+		gtk_window_present(GTK_WINDOW(cfgdialog));
+
 		gtk_main();
 	}
 }
