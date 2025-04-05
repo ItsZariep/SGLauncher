@@ -1,3 +1,38 @@
+#include "cfgmgr.h"
+
+GtkWidget *cfgdialog;
+GtkWidget *weblabel;
+GtkWidget *webcombo;
+GtkWidget *webctm;
+GtkWidget *wmlayout;
+GtkWidget *wshowcmd;
+GtkWidget *wshowweb;
+GtkWidget *wshowcalc;
+GtkWidget *wshowscientific;
+GtkWidget *wexitwhenunfocused;
+GtkWidget *defbtn;
+GtkWidget *applybtn;
+GtkWidget *wshowda;
+GtkWidget *wusecsd;
+GtkWidget *whidetitle;
+GtkWidget *wentryonbottom;
+GtkWidget *wiconsize;
+GtkWidget *wuseiconview;
+GtkWidget *wcloseterm;
+GtkWidget *wignorenodisplay;
+GtkWidget *wignoreterminal;
+GtkWidget *whidewindeco;
+GtkWidget *wignoreonlyshowin;
+GtkWidget *wshowofd;
+GtkWidget *wsingleinstance;
+GtkWidget *wshowqa;
+GtkWidget *wqasize;
+GtkWidget *wshowappicons;
+GtkWidget *wmsizex;
+GtkWidget *wmsizey;
+
+guint callconfig = 0;
+
 void on_webcombo_changed(GtkComboBox *widget, gpointer user_data)
 {
 	webctm = GTK_WIDGET(user_data);
@@ -37,12 +72,12 @@ void togglewidget(GtkWidget *input, gpointer data)
 void showcfg(void)
 {
 	callconfig = 1;
-	dialog = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title(GTK_WINDOW(dialog), "Settings - SGLauncher");
-	gtk_container_set_border_width(GTK_CONTAINER(dialog), 10);
-	gtk_widget_set_size_request(dialog, 400, 300);
-	window_set_icon(GTK_WINDOW(dialog), program_icon);
-	g_signal_connect(dialog, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+	cfgdialog = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_title(GTK_WINDOW(cfgdialog), "Settings - SGLauncher");
+	gtk_container_set_border_width(GTK_CONTAINER(cfgdialog), 10);
+	gtk_widget_set_size_request(cfgdialog, 400, 300);
+	window_set_icon(GTK_WINDOW(cfgdialog), program_icon);
+	g_signal_connect(cfgdialog, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
 	GtkWidget *confbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
 	GtkWidget *notebook = gtk_notebook_new();
@@ -171,7 +206,7 @@ void showcfg(void)
 		gtk_box_pack_end(GTK_BOX(applybox), defbtn, FALSE, FALSE, 2);
 
 	gtk_box_pack_start(GTK_BOX(confbox), applybox, FALSE, FALSE, 0);
-	gtk_container_add(GTK_CONTAINER(dialog), confbox);
+	gtk_container_add(GTK_CONTAINER(cfgdialog), confbox);
 
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowda), showda);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowappicons), showappicons);
@@ -223,8 +258,8 @@ void showcfg(void)
 	g_signal_connect(defbtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(1));
 	g_signal_connect(applybtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(0));
 
-	gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_CENTER);
-	gtk_widget_show_all(dialog);
+	gtk_window_set_position(GTK_WINDOW(cfgdialog), GTK_WIN_POS_CENTER);
+	gtk_widget_show_all(cfgdialog);
 
 	if (wengine != 3)
 	{
@@ -259,6 +294,6 @@ void showcfg(void)
 		gtk_widget_hide(whidewindeco);
 	}
 
-	g_signal_connect(dialog, "destroy", G_CALLBACK(on_dialog_destroy), NULL);
+	g_signal_connect(cfgdialog, "destroy", G_CALLBACK(on_dialog_destroy), NULL);
 	gtk_main();
 }

@@ -1,4 +1,6 @@
-static gboolean on_filter_visible(GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
+#include "keyhandler.h"
+
+gboolean on_filter_visible(GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 {
 	FilterData *filterdata = (FilterData *)data;
 	gchar *name;
@@ -36,7 +38,7 @@ static gboolean on_filter_visible(GtkTreeModel *model, GtkTreeIter *iter, gpoint
 	return visible;
 }
 
-static void on_entry_changed(GtkEntry *target, FilterData *filterdata)
+void on_entry_changed(GtkEntry *target, FilterData *filterdata)
 {
 	if (filterdata->filter == NULL)
 	{
@@ -108,7 +110,7 @@ gboolean on_key_release(GtkWidget *widget, GdkEventKey *event, gpointer user_dat
 	//const char *text = gtk_entry_get_text(GTK_ENTRY(entry));
 	if (event->keyval == GDK_KEY_Escape || (event->keyval == GDK_KEY_q && (event->state & GDK_CONTROL_MASK))) 
 	{
-		exit_window();
+		exit_window(window);
 		return TRUE;
 	}
 	else if (event->keyval == GDK_KEY_Escape || ((event->state & GDK_CONTROL_MASK) && 

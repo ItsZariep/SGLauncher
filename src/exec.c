@@ -1,4 +1,5 @@
-void exit_window(void);
+#include "exec.h"
+
 void run_command(GtkWidget *widget, gpointer data)
 {
 	gchar *input = (gchar *)data;
@@ -24,7 +25,7 @@ void run_command(GtkWidget *widget, gpointer data)
 		else
 		{
 			g_spawn_close_pid(pid);
-			exit_window();
+			exit_window(window);
 		}
 	}
 	else
@@ -53,7 +54,7 @@ void on_item_activated(GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewColu
 
 		if (toexec)
 		{
-			run_command(applist, (gpointer)toexec);
+			run_command(GTK_WIDGET(treeview), (gpointer)toexec);
 		}
 		g_free(app_name);
 		g_free(toexec);
@@ -126,4 +127,3 @@ void on_run_command(GtkWidget *widget, GdkEventButton *event, GtkWidget *input)
 		g_free(cmd);
 	}
 }
-

@@ -1,20 +1,12 @@
-typedef struct
-{
-	gchar *name;
-	gchar *icon;
-	gchar *path;
-	gchar *toexec;
-}AppDetails;
+#include "entryloader.h"
 
-typedef struct
-{
-	GtkEntry *entry;
-	GtkTreeModelFilter *filter;
-	gchar *filter_text;
-	GtkTreeView *treeview;
-	GtkIconView *iconview;
-} FilterData;
-FilterData filter_data;
+FilterData filter_data = { NULL, NULL, NULL, NULL, NULL };
+GtkTreeStore *store = NULL;
+GtkTreeViewColumn *column = NULL;
+GtkCellRenderer *renderer = NULL;
+GtkTreeModelSort *sorted_model = NULL;
+GtkTreeModelFilter *filter_model = NULL;
+
 
 gint gtk_tree_iter_compare_func(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data)
 {
@@ -39,7 +31,7 @@ gint gtk_tree_iter_compare_func(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter
 	return 0;
 }
 
-void load_apps(GtkTreeView *treeview)
+void load_apps(GtkTreeView *treeview, GtkIconView *iconview)
 {
 	const gchar *const *data_dirs = g_get_system_data_dirs();
 	const gchar *user_dir = g_get_user_data_dir();
@@ -64,7 +56,7 @@ void load_apps(GtkTreeView *treeview)
 
 	app_dirs[z] = NULL;
 
-	//store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 	store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 	renderer = gtk_cell_renderer_pixbuf_new();

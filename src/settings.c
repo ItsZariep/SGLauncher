@@ -1,4 +1,47 @@
-void exit_window(void);
+#include "settings.h"
+
+const gchar *cweb;
+const gchar *cwebng;
+const gchar *corder;
+const gchar *active_text;
+const gchar *home_dir;
+const gchar *config_file_path;
+const gchar *quick_dirs[ML];
+gchar *pm;
+gchar *webengine;
+gchar *cwengine;
+gchar cengine[ML];
+gchar *program_icon;
+gchar *ccloseterm;
+
+guint wengine;
+guint mlayout;
+guint showweb;
+guint showcmd;
+guint showcalc;
+guint showda;
+guint showofd;
+guint useiconview = 0;
+guint showscientific = 1;
+guint exitwhenunfocused = 0;
+guint nocsd = 0;
+guint hidetitle = 0;
+guint entryonbottom = 0;
+guint nohome = 0;
+guint usecsd = 1;
+guint iconsize = 32;
+guint qasize = 24;
+guint closeterm = 1;
+guint ignorenodisplay = 1;
+guint ignoreterminal = 1;
+guint ignoreonlyshowin = 0;
+guint hidewindeco = 0;
+guint singleinstance = 0;
+guint showqa = 1;
+guint showappicons = 1;
+guint msizex = 640;
+guint msizey = 400;
+guint restarting = 0;
 
 void updateconf(GtkButton *widget, gpointer user_data) 
 {
@@ -6,7 +49,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 	GKeyFile *config = g_key_file_new();
 	GError *error = NULL;
 
-	const gchar*ncengine = NULL, *entry_text = gtk_entry_get_text(GTK_ENTRY(webctm)),
+	const gchar *ncengine = NULL, *entry_text = gtk_entry_get_text(GTK_ENTRY(webctm)),
 		*placeholder_text = gtk_entry_get_placeholder_text(GTK_ENTRY(webctm));
 
 	if (!g_key_file_load_from_file(config, config_file_path, G_KEY_FILE_KEEP_COMMENTS, &error))
@@ -17,7 +60,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 
 	if (reset) 
 	{
-		dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION,
+		GtkWidget *dialog = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION,
 			GTK_BUTTONS_OK_CANCEL,
 			"Are you sure you want to restore SGLauncher settings as default?");
 		gtk_window_set_position(GTK_WINDOW(dialog), GTK_WIN_POS_CENTER);
@@ -121,7 +164,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 	g_key_file_unref(config);
 
 	restarting = 1;
-	exit_window();
+	exit_window(window);
 }
 
 

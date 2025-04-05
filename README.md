@@ -14,20 +14,31 @@ Simple GTK Launcher
 
  See all available settings in the [documentation](https://codeberg.org/ItsZariep/SGLauncher/wiki/Settings)
 
-## Build
-- All:
+## Build:
+- Clone:
 ```
-make
+git clone https://codeberg.org/itszariep/sglauncher
 ```
-
-- Main Program:
-
+```
+cd sglauncher
+```
+- Build
 ```
 make sglauncher
 ```
 
-- Localization files:
+- (Optional) Localization files:
 
 ```
 make compile-locales
 ```
+- (Optional) Install:
+
+```
+sudo -E make install
+```
+> Replace `sudo` if you use an alternative command (like `doas`)
+
+
+> [!NOTE]  
+> The `-E` flag ensures that `sudo` does not reset certain environment variables, which is important because SGLauncher needs to know which version to declare based on the git branch (if it is `stable`, it uses the `VERSION` file; if it is `main`, it uses the `date.commitHash`). This is not needed when running `make` without `sudo` / `doas` / root privileges.

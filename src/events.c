@@ -1,10 +1,11 @@
-void create_window(void);
-void exit_window(void)
+#include "events.h"
+
+guint ismoving = 0;
+void exit_window(GtkWidget *window)
 {
 	if (restarting)
 	{
 		gtk_widget_destroy(window);
-		gtk_widget_destroy(dialog);
 		restarting = 0;
 		readconf();
 		create_window();
@@ -69,7 +70,7 @@ void window_set_icon(GtkWindow *target, gchar *iconname)
 		g_object_unref(info);
 }
 
-static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpointer user_data)
+gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpointer user_data)
 {
 	if (event->type == GDK_BUTTON_PRESS && event->button == 3)
 	{
@@ -169,15 +170,10 @@ static gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpoi
 
 				gtk_menu_popup_at_pointer(GTK_MENU(menu), (GdkEvent*)event);
 
-				//gtk_tree_path_free(path);
-				// g_free(app_comment);
-				// g_free(toexec);
-				// g_free(cmdexec);
-				// g_free(fmexec);
-
 				return TRUE;
 			}
 		}
 	}
 	return FALSE;
 }
+

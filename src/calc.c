@@ -1,12 +1,4 @@
-#include <math.h>
-
-#define MAX_LEN 100
-
-typedef struct
-{
-	double data[MAX_LEN];
-	int top;
-} Stack;
+#include "calc.h"
 
 void push(Stack *s, double val)
 {

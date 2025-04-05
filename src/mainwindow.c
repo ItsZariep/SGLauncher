@@ -1,3 +1,42 @@
+#include "mainwindow.h"
+
+GtkWidget *math;
+GtkWidget *xdg_box;
+GtkWidget *xdg_row;
+GtkWidget *dialog;
+GtkWidget *window;
+GtkWidget *grid;
+GtkWidget *button;
+GtkWidget *cmd_row;
+GtkWidget *web_row;
+GtkWidget *web_box;
+GtkWidget *entry;
+GtkWidget *manswer;
+GtkWidget *mathtext;
+GtkWidget *listbox2;
+GtkWidget *qa;
+GtkWidget *row;
+GtkWidget *headerbar;
+GtkWidget *image;
+GtkWidget *wtitle;
+GtkWidget *submenu;
+GtkWidget *submenu_item_onlinehelp;
+GtkWidget *submenu_menu_help;
+GtkWidget *submenu_item_help;
+GtkWidget *submenu_item_settings;
+GtkWidget *submenu_item_quickhelp;
+GtkWidget *submenu_item_about;
+GtkWidget *submenu_item4;
+GtkWidget *submenu_item5;
+GtkWidget *scrolled_window;
+GtkWidget *iconview;
+GtkWidget *applist;
+
+GPtrArray *program_icon_names;
+GtkIconTheme *theme;
+GtkIconInfo *info;
+GdkPixbuf *icon;
+
 void on_submenu_item_about_selected(GtkMenuItem *menuitem, gpointer userdata)
 {
 	dialog = gtk_about_dialog_new();
@@ -6,7 +45,7 @@ void on_submenu_item_about_selected(GtkMenuItem *menuitem, gpointer userdata)
 	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), pver);
 	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), "Copyright © 2025 ItsZariep");
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), "Simple GTK Launcher");
-	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), "https://codeberg.org/ItsZariep/SGLauncher");
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), "https://itszariep.codeberg.page/projects/sglauncher/");
 	gtk_about_dialog_set_website_label(GTK_ABOUT_DIALOG(dialog), _("Project Website"));
 	gtk_about_dialog_set_license_type(GTK_ABOUT_DIALOG(dialog),GTK_LICENSE_GPL_3_0);
 	gtk_about_dialog_set_logo_icon_name(GTK_ABOUT_DIALOG(dialog),program_icon);
@@ -58,7 +97,7 @@ void create_window(void)
 	gtk_widget_set_size_request(window, msizex, msizey);
 	gtk_window_set_title(GTK_WINDOW(window), "SGLauncher");
 	gtk_container_set_border_width(GTK_CONTAINER(window), 10);
-	g_signal_connect(window, "destroy", G_CALLBACK(exit_window), NULL);
+	g_signal_connect(window, "destroy", G_CALLBACK(exit_window), window);
 
 	window_set_icon(GTK_WINDOW(window), program_icon);
 
@@ -196,6 +235,7 @@ void create_window(void)
 	{
 		gtk_list_box_insert(GTK_LIST_BOX(listbox2), xdg_row, -1);
 	}
+
 	gtk_widget_set_size_request(web_row, -1, 32);
 	gtk_widget_set_size_request(cmd_row, -1, 32);
 
@@ -275,6 +315,7 @@ void create_window(void)
 		gtk_grid_attach(GTK_GRID(grid), qa, 0, 0, 1, 1);
 		gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 2, 1, 1);
 	}
+
 	if (sgcfg)
 	{
 		gtk_widget_activate(submenu_item_settings);
@@ -282,7 +323,7 @@ void create_window(void)
 	else
 	{
 		gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-		load_apps(GTK_TREE_VIEW(applist));
+		load_apps(GTK_TREE_VIEW(applist), GTK_ICON_VIEW(iconview));
 
 		filter_model = GTK_TREE_MODEL_FILTER(gtk_tree_model_filter_new(GTK_TREE_MODEL(sorted_model), NULL));
 

@@ -1,4 +1,19 @@
 #include "sglauncher.h"
+
+guint forceinstance = 0;
+guint sgcfg = 0;
+guint fcsd = 0;
+const gchar *terminal;
+const gchar *deskenv;
+
+GOptionEntry entries[] =
+{
+	{ "cfg", 0, 0, G_OPTION_ARG_NONE, &sgcfg, "Open SGLauncher settings", NULL },
+	{ "nocsd", 0, 0, G_OPTION_ARG_NONE, &fcsd, "Disable CSD Decoration", NULL },
+	{ "new-instance", 0, 0, G_OPTION_ARG_NONE, &forceinstance, "Force open program ignoring lock file", NULL },
+	{ NULL }
+};
+
 int main(int argc, char *argv[]) 
 {
 	setlocale(LC_ALL, "");

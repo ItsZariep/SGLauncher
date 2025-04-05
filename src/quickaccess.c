@@ -1,3 +1,5 @@
+#include "quickaccess.h"
+
 void load_quickaccess(void);
 
 static gboolean on_button_press_event(GtkWidget *widget, GdkEventButton *event, gpointer menu)
@@ -415,3 +417,4 @@ void create_quickaccess(GtkWidget *pass, gpointer data)
 	g_free(coutput);
 	g_free((gchar *)qapath);
 }
+
