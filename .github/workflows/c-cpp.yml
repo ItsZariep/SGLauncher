@@ -5,9 +5,9 @@ permissions:
 
 on:
   push:
-    branches: [ "stable" ]
+    branches: [ "test-ci" ]
   pull_request:
-    branches: [ "stable" ]
+    branches: [ "test-ci" ]
 
 jobs:
   build:
@@ -32,9 +32,10 @@ jobs:
 
     - name: Build with GCC
       run: |
+        cd src
         make sglauncher CC=gcc
         strip sglauncher
-        mv sglauncher ${{ env.VVERSION }}
+        mv sglauncher ../${{ env.GH_RELEASE_FILE }}
 
     - name: Release
       uses: softprops/action-gh-release@v2
