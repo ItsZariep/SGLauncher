@@ -122,6 +122,10 @@ void on_run_command(GtkWidget *widget, GdkEventButton *event, GtkWidget *input)
 	}
 	else if ((void*)selected_row == (void*)xdg_row)
 	{
+		if (!g_file_test(text, G_FILE_TEST_EXISTS))
+		{
+			return;
+		}
 		cmd = g_strdup_printf("xdg-open %s", text);
 		run_command(applist, (gpointer)cmd);
 		g_free(cmd);

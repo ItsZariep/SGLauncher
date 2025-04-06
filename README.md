@@ -3,14 +3,16 @@ Simple GTK Launcher
 
 ## Features:
 
-- [x] Show system menu apps
-- [x] Search On Web button
-- [x] Run In Terminal button
-- [x] Show calc answers
-- [x] Show Actions
+- [x] Show [system/user apps](https://codeberg.org/ItsZariep/SGLauncher/wiki/Application-detection)
+- [x] Quick access bar
+- [x] Search on web button
+- [x] Run in terminal button
+- [x] [Show calculator answers](https://codeberg.org/ItsZariep/SGLauncher/wiki/Integrated-calculator)
+- [x] Show applications actions
 - [x] Customizable layout
 - [x] Optional icon view
-- [x] A simple configuration tool
+- [x] [Custom CSS styling](https://codeberg.org/ItsZariep/SGLauncher/wiki/Styling)
+- [x] Simple configuration tool
 
  See all available settings in the [documentation](https://codeberg.org/ItsZariep/SGLauncher/wiki/Settings)
 

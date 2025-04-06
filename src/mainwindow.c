@@ -283,18 +283,9 @@ void create_window(void)
 	GtkWidget *xdgrun = gtk_label_new(_("Open file/directory"));
 	gtk_box_pack_start(GTK_BOX(xdg_box), xdgrun, FALSE, FALSE, 0);
 
-	if (showcmd == 1)
-	{
-		gtk_list_box_insert(GTK_LIST_BOX(listbox2), cmd_row, -1);
-	}
-	if (showweb == 1)
-	{
-		gtk_list_box_insert(GTK_LIST_BOX(listbox2), web_row, -1);
-	}
-	if (showofd == 1)
-	{
-		gtk_list_box_insert(GTK_LIST_BOX(listbox2), xdg_row, -1);
-	}
+	gtk_list_box_insert(GTK_LIST_BOX(listbox2), cmd_row, -1);
+	gtk_list_box_insert(GTK_LIST_BOX(listbox2), web_row, -1);
+	gtk_list_box_insert(GTK_LIST_BOX(listbox2), xdg_row, -1);
 
 	gtk_widget_set_size_request(web_row, -1, 32);
 	gtk_widget_set_size_request(cmd_row, -1, 32);
@@ -408,6 +399,18 @@ void create_window(void)
 		gtk_widget_show_all(window);
 		gtk_widget_hide(mathtext);
 		gtk_widget_hide(listbox2);
+		if (showcmd == 0)
+		{
+			gtk_widget_hide(cmd_row);
+		}
+		if (showweb == 0)
+		{
+			gtk_widget_hide(web_row);
+		}
+		if (showofd == 0)
+		{
+			gtk_widget_hide(xdg_row);
+		}
 
 		if (disableunfocus == 1)
 		{

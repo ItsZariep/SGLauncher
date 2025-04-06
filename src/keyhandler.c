@@ -177,6 +177,11 @@ gboolean on_key_release(GtkWidget *widget, GdkEventKey *event, gpointer user_dat
 	{
 		gtk_widget_activate(web_row);
 	}
+
+	else if((event->state & GDK_CONTROL_MASK) && (event->keyval == GDK_KEY_e))
+	{
+		gtk_widget_activate(xdg_row);
+	}
 	return FALSE;
 }
 
