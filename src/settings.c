@@ -43,6 +43,7 @@ guint msizex = 640;
 guint msizey = 400;
 guint restarting = 0;
 guint usecustomcss = 1;
+guint searchrecursive = 1;
 
 guint disableunfocus = 0;
 void updateconf(GtkButton *widget, gpointer user_data) 
@@ -91,6 +92,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "View", "usecustomcss", 1);
 		g_key_file_set_integer(config, "Behavior", "closeterm", 0);
 		g_key_file_set_integer(config, "Behavior", "showscientific", 1);
+		g_key_file_set_integer(config, "Behavior", "searchrecursive", 1);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", 1);
 		g_key_file_set_integer(config, "Behavior", "ignoreterminal", 0);
 		g_key_file_set_integer(config, "Behavior", "ignoreonlyshowin", 0);
@@ -115,6 +117,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		entryonbottom = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wentryonbottom));
 		closeterm = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wcloseterm));
 		showscientific = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowscientific));
+		searchrecursive = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wsearchrecursive));
 		ignorenodisplay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignorenodisplay));
 		ignoreonlyshowin = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignoreonlyshowin));
 		ignoreterminal = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignoreterminal));
@@ -147,6 +150,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "View", "usecustomcss", usecustomcss);
 		g_key_file_set_integer(config, "View", "mlayout", mlayout);
 		g_key_file_set_integer(config, "Behavior", "closeterm", closeterm);
+		g_key_file_set_integer(config, "Behavior", "searchrecursive", searchrecursive);
 		g_key_file_set_integer(config, "Behavior", "showscientific", showscientific);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", ignorenodisplay);
 		g_key_file_set_integer(config, "Behavior", "ignoreterminal", ignoreterminal);
@@ -249,6 +253,9 @@ void readconf(void)
 			closeterm = g_key_file_get_integer(key_file, "Behavior", "closeterm", NULL);
 			ccloseterm = closeterm ? "": ";read" ;
 		}
+
+		if (g_key_file_has_key(key_file, "Behavior", "searchrecursive", NULL))
+			searchrecursive = g_key_file_get_integer(key_file, "Behavior", "searchrecursive", NULL);
 
 		if (g_key_file_has_key(key_file, "Behavior", "showscientific", NULL))
 			showscientific = g_key_file_get_integer(key_file, "Behavior", "showscientific", NULL);

@@ -31,6 +31,7 @@ GtkWidget *wshowappicons;
 GtkWidget *wmsizex;
 GtkWidget *wmsizey;
 GtkWidget *wusecustomcss;
+GtkWidget *wsearchrecursive;
 GtkWidget *cancelbtn;
 GtkWidget *okbtn;
 
@@ -159,6 +160,8 @@ void showcfg(void)
 
 		wcloseterm = gtk_check_button_new_with_label(_("Close terminal when process finishes"));
 			gtk_widget_set_direction(wcloseterm, GTK_TEXT_DIR_RTL);
+		wsearchrecursive = gtk_check_button_new_with_label(_("Search entries recursively"));
+			gtk_widget_set_direction(wsearchrecursive, GTK_TEXT_DIR_RTL);
 		wshowscientific = gtk_check_button_new_with_label(_("Use scientific notation on math answers"));
 			gtk_widget_set_direction(wshowscientific, GTK_TEXT_DIR_RTL);
 		wignorenodisplay = gtk_check_button_new_with_label(_("Ignore \"NoDisplay\" apps"));
@@ -228,9 +231,10 @@ void showcfg(void)
 	gtk_notebook_append_page(GTK_NOTEBOOK(notebook), tab_behavior, gtk_label_new(_("Behavior")));
 		gtk_grid_attach(GTK_GRID(tab_behavior), wcloseterm, 0, 0, 2, 1);
 		gtk_grid_attach(GTK_GRID(tab_behavior), wshowscientific, 0, 1, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_behavior), wignorenodisplay, 0, 2, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreterminal, 0, 3, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreonlyshowin, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wsearchrecursive, 0, 2, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wignorenodisplay, 0, 3, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreterminal, 0, 4, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreonlyshowin, 0, 5, 2, 1);
 
 	GtkWidget *tab_window = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_window), TRUE);
@@ -270,6 +274,7 @@ void showcfg(void)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowofd), showofd);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowcalc), showcalc);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowscientific), showscientific);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wsearchrecursive), searchrecursive);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wignorenodisplay), ignorenodisplay);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wignoreterminal), ignoreterminal);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wignoreonlyshowin), ignoreonlyshowin);

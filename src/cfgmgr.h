@@ -38,6 +38,7 @@ extern GtkWidget *wshowappicons;
 extern GtkWidget *wmsizex;
 extern GtkWidget *wmsizey;
 extern GtkWidget *wusecustomcss;
+extern GtkWidget *wsearchrecursive;
 
 extern guint callconfig;
 

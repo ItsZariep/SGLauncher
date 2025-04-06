@@ -47,6 +47,7 @@ extern guint showappicons;
 extern guint msizex;
 extern guint msizey;
 extern guint usecustomcss;
+extern guint searchrecursive;
 
 void updateconf(GtkButton *widget, gpointer user_data);
 void readconf(void);

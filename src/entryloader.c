@@ -31,86 +31,56 @@ gint gtk_tree_iter_compare_func(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter
 	return 0;
 }
 
-void load_apps(GtkTreeView *treeview, GtkIconView *iconview)
+void search_directory_recursively(const gchar *dir_path, GtkTreeStore *store, GtkTreeIter *parent_iter)
 {
-	const gchar *const *data_dirs = g_get_system_data_dirs();
-	const gchar *user_dir = g_get_user_data_dir();
-
-	size_t num_data_dirs = 0;
-	for (const gchar *const *dir = data_dirs; *dir != NULL; dir++)
+	DIR *dir = opendir(dir_path);
+	if (dir == NULL)
 	{
-		num_data_dirs++;
+		return;
 	}
 
-	const gchar **app_dirs = g_malloc((num_data_dirs + 1 + 1) * sizeof(gchar *));
-
-	size_t z = 0;
-	for (const gchar *const *dir = data_dirs; *dir != NULL; dir++)
+	struct dirent *ent;
+	while ((ent = readdir(dir)) != NULL)
 	{
-		app_dirs[z] = g_strconcat(*dir, "/applications", NULL);
-		z++;
-	}
-
-	app_dirs[z] = g_strconcat(user_dir, "/applications", NULL);
-	z++;
-
-	app_dirs[z] = NULL;
-
-	store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-	store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
-
-	renderer = gtk_cell_renderer_pixbuf_new();
-	column = gtk_tree_view_column_new_with_attributes("", renderer, "pixbuf", 2, NULL);
-	gtk_tree_view_append_column(treeview, column);
-
-	renderer = gtk_cell_renderer_text_new();
-	column = gtk_tree_view_column_new_with_attributes("", renderer, "text", 0, NULL);
-	gtk_tree_view_append_column(treeview, column);
-
-	sorted_model = GTK_TREE_MODEL_SORT(gtk_tree_model_sort_new_with_model(GTK_TREE_MODEL(store)));
-	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(sorted_model), 0, (GtkTreeIterCompareFunc)gtk_tree_iter_compare_func, NULL, NULL);
-	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(sorted_model), 0, GTK_SORT_ASCENDING);
-
-	gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(sorted_model));
-
-	gtk_icon_view_set_model(GTK_ICON_VIEW(iconview), GTK_TREE_MODEL(sorted_model));
-	gtk_icon_view_set_text_column(GTK_ICON_VIEW(iconview), 0);
-	gtk_icon_view_set_pixbuf_column(GTK_ICON_VIEW(iconview), 2);
-
-	for (int i = 0; app_dirs[i] != NULL; i++)
-	{
-		DIR *dir = opendir(app_dirs[i]);
-		if (dir == NULL) continue;
-
-		struct dirent *ent;
-		while ((ent = readdir(dir)) != NULL)
+		if (ent->d_name[0] == '.') 
 		{
-			if (ent->d_name[0] == '.' || !g_str_has_suffix(ent->d_name, ".desktop")) continue;
+			continue;
+		}
 
-			gchar *path = g_strdup_printf("%s/%s", app_dirs[i], ent->d_name);
+		gchar *full_path = g_strdup_printf("%s/%s", dir_path, ent->d_name);
+
+		if (g_file_test(full_path, G_FILE_TEST_IS_DIR))
+		{
+			if (searchrecursive)
+			{
+				search_directory_recursively(full_path, store, parent_iter);
+			}
+		}
+		else if (g_str_has_suffix(ent->d_name, ".desktop"))
+		{
 			GKeyFile *key_file = g_key_file_new();
 			GError *error = NULL;
 
-			if (!g_key_file_load_from_file(key_file, path, G_KEY_FILE_NONE, &error))
+			if (!g_key_file_load_from_file(key_file, full_path, G_KEY_FILE_NONE, &error))
 			{
 				g_warning("Error loading .desktop file: %s", error->message);
 				g_error_free(error);
-				g_free(path);
+				g_free(full_path);
 				g_key_file_free(key_file);
 				continue;
 			}
 
 			if (g_key_file_get_boolean(key_file, "Desktop Entry", "NoDisplay", NULL) && ignorenodisplay)
 			{
-				g_free(path);
+				g_free(full_path);
 				g_key_file_free(key_file);
 				continue;
 			}
 
 			if (deskenv)
 			{
-				gchar **show_in_list = NULL,
-				*only_show_in = g_key_file_get_string(key_file, "Desktop Entry", "OnlyShowIn", NULL);
+				gchar **show_in_list = NULL;
+				gchar *only_show_in = g_key_file_get_string(key_file, "Desktop Entry", "OnlyShowIn", NULL);
 				if (only_show_in)
 				{
 					show_in_list = g_strsplit(only_show_in, ";", -1);
@@ -129,7 +99,7 @@ void load_apps(GtkTreeView *treeview, GtkIconView *iconview)
 					g_strfreev(show_in_list);
 					if (!matches && !ignoreonlyshowin)
 					{
-						g_free(path);
+						g_free(full_path);
 						g_key_file_free(key_file);
 						continue;
 					}
@@ -146,7 +116,7 @@ void load_apps(GtkTreeView *treeview, GtkIconView *iconview)
 			{
 				if (ignoreterminal)
 				{
-					g_free(path);
+					g_free(full_path);
 					g_key_file_free(key_file);
 					continue;
 				}
@@ -185,43 +155,13 @@ void load_apps(GtkTreeView *treeview, GtkIconView *iconview)
 				}
 			}
 
-			gchar *dir_name = g_strdup(app_dirs[i]);
+			gchar *dir_name = g_strdup(dir_path);
 			GtkTreeIter app_iter;
-			gtk_tree_store_append(store, &app_iter, NULL);
+			gtk_tree_store_append(store, &app_iter, parent_iter);
 			gchar *merged_data = g_strdup_printf("%s%s%s", app_name, toexec, icon_name);
-			gtk_tree_store_set(store, &app_iter, 0, app_name, 1, toexec, 2, showappicons ? icon_pixbuf : NULL, 3, merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
-			gtk_tree_view_set_tooltip_column(GTK_TREE_VIEW(treeview), 4);
+			gtk_tree_store_set(store, &app_iter, 0, app_name, 1, toexec, 2, showappicons ? icon_pixbuf : NULL, 3, merged_data, 4, app_comment, 5, dir_name, 6, full_path, -1);
+			gtk_tree_view_set_tooltip_column(GTK_TREE_VIEW(applist), 4);
 			gtk_icon_view_set_tooltip_column(GTK_ICON_VIEW(iconview), 4);
-
-			if (showda)
-			{
-			// Handling Desktop Actions
-				gchar **groups = g_key_file_get_groups(key_file, NULL);
-				for (int j = 0; groups[j] != NULL; j++)
-				{
-					if (g_str_has_prefix(groups[j], "Desktop Action"))
-					{
-						gchar *action_name = g_key_file_get_locale_string(key_file, groups[j], "Name", NULL, NULL);
-						gchar *exec_value = g_key_file_get_string(key_file, groups[j], "Exec", NULL);
-						gchar *maction_name = NULL;
-
-						// This makes the text more readable when showappicons is 0
-						maction_name = g_strdup_printf(!showappicons ? "   %s" : "%s", action_name);
-
-						if (action_name && exec_value)
-						{
-							GtkTreeIter action_iter;
-							gtk_tree_store_append(store, &action_iter, &app_iter);
-							gchar *action_merged_data = g_strdup_printf("%s%s%s", action_name, exec_value, icon_name);
-							gtk_tree_store_set(store, &action_iter, 0, maction_name, 1, exec_value, 2, icon_pixbuf, 3, action_merged_data, 4, app_comment, 5, dir_name, 6, path, -1);
-							g_free(action_name);
-							g_free(exec_value);
-							g_free(action_merged_data);
-						}
-					}
-				}
-			g_strfreev(groups);
-			}
 
 			g_free(app_name);
 			g_free(icon_name);
@@ -229,12 +169,65 @@ void load_apps(GtkTreeView *treeview, GtkIconView *iconview)
 			g_free(toexec);
 			g_free(merged_data);
 			g_key_file_free(key_file);
-			g_free(path);
 		}
-		closedir(dir);
+		g_free(full_path);
 	}
+
+	closedir(dir);
+}
+
+void load_apps(GtkTreeView *treeview, GtkIconView *iconview)
+{
+	const gchar *const *data_dirs = g_get_system_data_dirs();
+	const gchar *user_dir = g_get_user_data_dir();
+
+	size_t num_data_dirs = 0;
+	for (const gchar *const *dir = data_dirs; *dir != NULL; dir++)
+	{
+		num_data_dirs++;
+	}
+
+	const gchar **app_dirs = g_malloc((num_data_dirs + 1 + 1) * sizeof(gchar *));
+	size_t z = 0;
+	for (const gchar *const *dir = data_dirs; *dir != NULL; dir++)
+	{
+		app_dirs[z] = g_strconcat(*dir, "/applications", NULL);
+		z++;
+	}
+
+	app_dirs[z] = g_strconcat(user_dir, "/applications", NULL);
+	z++;
+
+	app_dirs[z] = NULL;
+
+	store = gtk_tree_store_new(7, G_TYPE_STRING, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+
+	renderer = gtk_cell_renderer_pixbuf_new();
+	column = gtk_tree_view_column_new_with_attributes("", renderer, "pixbuf", 2, NULL);
+	gtk_tree_view_append_column(treeview, column);
+
+	renderer = gtk_cell_renderer_text_new();
+	column = gtk_tree_view_column_new_with_attributes("", renderer, "text", 0, NULL);
+	gtk_tree_view_append_column(treeview, column);
+
+	sorted_model = GTK_TREE_MODEL_SORT(gtk_tree_model_sort_new_with_model(GTK_TREE_MODEL(store)));
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(sorted_model), 0, (GtkTreeIterCompareFunc)gtk_tree_iter_compare_func, NULL, NULL);
+	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(sorted_model), 0, GTK_SORT_ASCENDING);
+
+	gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(sorted_model));
+	gtk_icon_view_set_model(GTK_ICON_VIEW(iconview), GTK_TREE_MODEL(sorted_model));
+	gtk_icon_view_set_text_column(GTK_ICON_VIEW(iconview), 0);
+	gtk_icon_view_set_pixbuf_column(GTK_ICON_VIEW(iconview), 2);
+
+	for (int i = 0; app_dirs[i] != NULL; i++)
+	{
+		search_directory_recursively(app_dirs[i], store, NULL);
+	}
+
 	if (showqa)
 	{
 		load_quickaccess();
 	}
+
+	g_free(app_dirs);
 }
