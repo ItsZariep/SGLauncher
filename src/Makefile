@@ -24,7 +24,7 @@ PREFIX = /usr
 BIN_DIR = $(PREFIX)/bin
 APP_DIR = $(PREFIX)/share/applications
 
-all: $(EXE) compile-locales
+all: $(EXE)
 
 sglauncher: $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS) -lm

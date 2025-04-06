@@ -4,6 +4,9 @@
 #include "sglauncher.h"
 #include "settings.h"
 
+#define XA 0.0f
+#define XM 4
+
 extern GtkWidget *cfgdialog;
 extern GtkWidget *weblabel;
 extern GtkWidget *webcombo;

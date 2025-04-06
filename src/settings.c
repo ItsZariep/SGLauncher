@@ -197,7 +197,13 @@ void readconf(void)
 		}
 
 		if (g_key_file_has_key(key_file, "Elements", "cengine", NULL))
+		{
 			g_strlcpy(cengine, g_key_file_get_string(key_file, "Elements", "cengine", NULL), sizeof(cengine));
+		}
+		else
+		{
+			g_strlcpy(cengine, "https://searx.be/search?q", sizeof(cengine));
+		}
 
 		if (g_key_file_has_key(key_file, "Elements", "wengine", NULL))
 			wengine = g_key_file_get_integer(key_file, "Elements", "wengine", NULL);
