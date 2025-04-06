@@ -53,7 +53,6 @@ void on_submenu_item_about_selected(GtkMenuItem *menuitem, gpointer userdata)
 	gtk_widget_destroy(dialog);
 }
 
-
 void on_submenu_item_onlinehelp_selected(GtkMenuItem *menuitem, gpointer userdata) 
 {
 	const gchar *link = "https://codeberg.org/ItsZariep/SGLauncher/wiki/?action=_pages";
@@ -144,6 +143,8 @@ void create_window(void)
 
 	gtk_menu_button_set_popup(GTK_MENU_BUTTON(button), submenu);
 
+
+	GtkWidget *box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	if (!nocsd)
 	{
 		gtk_window_set_titlebar(GTK_WINDOW(window), headerbar);
@@ -156,7 +157,6 @@ void create_window(void)
 		}
 		else
 		{
-			GtkWidget *box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 			gtk_box_pack_start(GTK_BOX(box), entry, TRUE, TRUE, 0);
 			gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbar), box);
 			gtk_widget_set_hexpand(entry, TRUE);
@@ -188,8 +188,6 @@ void create_window(void)
 		gtk_container_add(GTK_CONTAINER(scrolled_window), iconview);
 	else
 		gtk_container_add(GTK_CONTAINER(scrolled_window), applist);
-
-	gtk_widget_grab_focus(entry);
 
 	cmd_row = gtk_list_box_row_new();
 	GtkWidget *cmd_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
@@ -297,15 +295,16 @@ void create_window(void)
 
 	if (nocsd)
 	{
+		gtk_box_pack_start(GTK_BOX(box), entry, TRUE, TRUE, 0);
 		if (entryonbottom)
 		{
 			gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 5, 1, 1);
-			gtk_grid_attach(GTK_GRID(grid), entry, 0, 6, 1, 1);
+			gtk_grid_attach(GTK_GRID(grid), box, 0, 6, 1, 1);
 			gtk_grid_attach(GTK_GRID(grid), qa, 0, 7, 1, 1);
 		}
 		else
 		{
-			gtk_grid_attach(GTK_GRID(grid), entry, 0, 0, 1, 1);
+			gtk_grid_attach(GTK_GRID(grid), box, 0, 0, 1, 1);
 			gtk_grid_attach(GTK_GRID(grid), qa, 0, 1, 1, 1);
 			gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 2, 1, 1);
 		}
@@ -341,13 +340,14 @@ void create_window(void)
 			filter_data.entry = GTK_ENTRY(entry);
 
 		g_signal_connect(entry, "changed", G_CALLBACK(on_entry_changed), &filter_data);
+		g_signal_connect(entry, "key-press-event", G_CALLBACK(on_key_release), NULL);
 		g_signal_connect(applist, "button-press-event", G_CALLBACK(applist_show_menu), NULL);
 		g_signal_connect(iconview, "button-press-event", G_CALLBACK(applist_show_menu), NULL);
 		gtk_widget_show_all(window);
 		gtk_widget_hide(mathtext);
 		gtk_widget_hide(listbox2);
 		gtk_window_present(GTK_WINDOW(cfgdialog));
-
+		gtk_widget_grab_focus(entry);
 		gtk_main();
 	}
 }

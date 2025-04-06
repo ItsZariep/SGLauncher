@@ -90,16 +90,13 @@ void on_entry_changed(GtkEntry *target, FilterData *filterdata)
 			gtk_widget_show(mathtext);
 			gtk_widget_show(math);
 			gtk_widget_show(manswer);
-		}
-		else if (strlen(filterdata->filter_text) > 0 && !isdigit(filterdata->filter_text[0]))
-		{
-			gtk_widget_show(mathtext);
-			gtk_widget_hide(math);
-			gtk_widget_hide(manswer);
 			gtk_widget_show(listbox2);
 		}
 		else
 		{
+			gtk_widget_show(mathtext);
+			gtk_widget_hide(math);
+			gtk_widget_hide(manswer);
 			gtk_widget_hide(listbox2);
 		}
 	}
@@ -173,7 +170,9 @@ gboolean on_key_release(GtkWidget *widget, GdkEventKey *event, gpointer user_dat
 			gtk_widget_grab_focus(iconview);
 		else
 			gtk_widget_grab_focus(applist);
+		return TRUE;
 	}
+
 	else if((event->state & GDK_CONTROL_MASK) && (event->keyval == GDK_KEY_b))
 	{
 		gtk_widget_activate(web_row);
