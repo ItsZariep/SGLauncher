@@ -42,6 +42,7 @@ guint showappicons = 1;
 guint msizex = 640;
 guint msizey = 400;
 guint restarting = 0;
+guint usecustomcss = 1;
 
 guint disableunfocus = 0;
 void updateconf(GtkButton *widget, gpointer user_data) 
@@ -87,6 +88,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "View", "useiconview", 0);
 		g_key_file_set_integer(config, "View", "showappicons", 1);
 		g_key_file_set_integer(config, "View", "showda", 1);
+		g_key_file_set_integer(config, "View", "usecustomcss", 1);
 		g_key_file_set_integer(config, "Behavior", "closeterm", 0);
 		g_key_file_set_integer(config, "Behavior", "showscientific", 1);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", 1);
@@ -118,6 +120,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		ignoreterminal = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignoreterminal));
 		exitwhenunfocused = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wexitwhenunfocused));
 		singleinstance = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wsingleinstance));
+		usecustomcss = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wusecustomcss));
 		msizex = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wmsizex));
 		msizey = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(wmsizey));
 		usecsd = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wusecsd));
@@ -141,6 +144,7 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "View", "showqa", showqa);
 		g_key_file_set_integer(config, "View", "useiconview", useiconview);
 		g_key_file_set_integer(config, "View", "showda", showda);
+		g_key_file_set_integer(config, "View", "usecustomcss", usecustomcss);
 		g_key_file_set_integer(config, "View", "mlayout", mlayout);
 		g_key_file_set_integer(config, "Behavior", "closeterm", closeterm);
 		g_key_file_set_integer(config, "Behavior", "showscientific", showscientific);
@@ -237,6 +241,8 @@ void readconf(void)
 			showda = g_key_file_get_integer(key_file, "View", "showda", NULL);
 		if (g_key_file_has_key(key_file, "View", "entryonbottom", NULL))
 			entryonbottom = g_key_file_get_integer(key_file, "View", "entryonbottom", NULL);
+		if (g_key_file_has_key(key_file, "View", "usecustomcss", NULL))
+			usecustomcss = g_key_file_get_integer(key_file, "View", "usecustomcss", NULL);
 
 		if (g_key_file_has_key(key_file, "Behavior", "closeterm", NULL))
 		{

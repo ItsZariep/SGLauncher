@@ -37,6 +37,68 @@ GtkIconTheme *theme;
 GtkIconInfo *info;
 GdkPixbuf *icon;
 
+
+GtkCssProvider *global_provider = NULL;
+void loadcss(int load)
+{
+	if (load == 1)
+	{
+		if (global_provider != NULL)
+		{
+			g_warning("CSS is already loaded.");
+			return;
+		}
+
+		gchar *data_dir = g_build_filename(g_get_user_data_dir(), "sglauncher", NULL);
+		gchar *css_path = g_build_filename(data_dir, "style.css", NULL);
+
+		global_provider = gtk_css_provider_new();
+		GdkDisplay *display = gdk_display_get_default();
+		GdkScreen *screen = gdk_display_get_default_screen(display);
+
+		gtk_style_context_add_provider_for_screen(
+			screen,
+			GTK_STYLE_PROVIDER(global_provider),
+			GTK_STYLE_PROVIDER_PRIORITY_USER
+		);
+
+		GError *error = NULL;
+
+		gtk_css_provider_load_from_path(global_provider, css_path, &error);
+
+		if (error != NULL)
+		{
+			g_warning("Could not load CSS from %s: %s", css_path, error->message);
+			g_error_free(error);
+		}
+
+		g_free(data_dir);
+		g_free(css_path);
+	}
+	else if (load == 0)
+	{
+		if (global_provider == NULL)
+		{
+			g_warning("No CSS provider to unload.");
+			return;
+		}
+
+		GdkDisplay *display = gdk_display_get_default();
+		GdkScreen *screen = gdk_display_get_default_screen(display);
+
+		gtk_style_context_remove_provider_for_screen(screen,GTK_STYLE_PROVIDER(global_provider));
+
+		g_object_unref(global_provider);
+		global_provider = NULL;
+	}
+	else
+	{
+		return;
+	}
+}
+
+
+
 void on_submenu_item_about_selected(GtkMenuItem *menuitem, gpointer userdata)
 {
 	dialog = gtk_about_dialog_new();
@@ -346,7 +408,21 @@ void create_window(void)
 		gtk_widget_show_all(window);
 		gtk_widget_hide(mathtext);
 		gtk_widget_hide(listbox2);
-		gtk_window_present(GTK_WINDOW(cfgdialog));
+
+		if (disableunfocus == 1)
+		{
+			gtk_window_present(GTK_WINDOW(cfgdialog));
+		}
+
+		if (usecustomcss == 1)
+		{
+			loadcss(1);
+		}
+		else
+		{
+			loadcss(0);
+		}
+
 		gtk_widget_grab_focus(entry);
 		gtk_main();
 	}

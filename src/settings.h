@@ -46,6 +46,7 @@ extern guint showqa;
 extern guint showappicons;
 extern guint msizex;
 extern guint msizey;
+extern guint usecustomcss;
 
 void updateconf(GtkButton *widget, gpointer user_data);
 void readconf(void);

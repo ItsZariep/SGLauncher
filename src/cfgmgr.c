@@ -30,6 +30,7 @@ GtkWidget *wqasize;
 GtkWidget *wshowappicons;
 GtkWidget *wmsizex;
 GtkWidget *wmsizey;
+GtkWidget *wusecustomcss;
 GtkWidget *cancelbtn;
 GtkWidget *okbtn;
 
@@ -153,6 +154,8 @@ void showcfg(void)
 			GtkWidget *wqasize_label = gtk_label_new(_("Quick actions size"));
 				gtk_label_set_xalign(GTK_LABEL(wqasize_label), XA);
 				gtk_widget_set_margin_start(GTK_WIDGET(wqasize_label), XM);
+		wusecustomcss = gtk_check_button_new_with_label(_("Use custom CSS"));
+			gtk_widget_set_direction(wusecustomcss, GTK_TEXT_DIR_RTL);
 
 		wcloseterm = gtk_check_button_new_with_label(_("Close terminal when process finishes"));
 			gtk_widget_set_direction(wcloseterm, GTK_TEXT_DIR_RTL);
@@ -218,6 +221,7 @@ void showcfg(void)
 		gtk_grid_attach(GTK_GRID(tab_view), wuseiconview, 0, 5, 2, 1);
 		gtk_grid_attach(GTK_GRID(tab_view), wshowda, 0, 6, 2, 1);
 		gtk_grid_attach(GTK_GRID(tab_view), wentryonbottom, 0, 7, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_view), wusecustomcss, 0, 8, 2, 1);
 
 	GtkWidget *tab_behavior = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_behavior), TRUE);
@@ -274,6 +278,7 @@ void showcfg(void)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(whidewindeco), hidewindeco);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wexitwhenunfocused), exitwhenunfocused);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wsingleinstance), singleinstance);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wusecustomcss), usecustomcss);
 
 	gint length = strlen(cengine);
 	if (length > 0 && cengine[length - 1] == '\n')
