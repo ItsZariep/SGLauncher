@@ -66,7 +66,22 @@ void infixToPostfix(const char *infix, char postfix[][MAX_LEN], int *count)
 
 	for (int i = 0; infix[i] != '\0'; i++)
 	{
-		if (isdigit(infix[i]) || (infix[i] == '-' && (i == 0 || infix[i - 1] == '(' || strchr("+-*/^%nb", infix[i - 1]))))
+		if (strchr("rlcstCSThH", infix[i]) && (isdigit(infix[i + 1]) || (infix[i + 1] == '-' && isdigit(infix[i + 2]))))
+		{
+			char func = infix[i++];
+			int k = 0;
+
+			postfix[j][k++] = infix[i++];
+			while (isdigit(infix[i]) || infix[i] == '.')
+			{
+				postfix[j][k++] = infix[i++];
+			}
+			postfix[j][k] = '\0';
+			j++;
+			sprintf(postfix[j++], "%c", func);
+			i--;
+		}
+		else if (isdigit(infix[i]) || (infix[i] == '-' && (i == 0 || infix[i - 1] == '(' || strchr("+-*/^%nb", infix[i - 1]))))
 		{
 			int k = 0;
 			postfix[j][k++] = infix[i++];
@@ -75,8 +90,9 @@ void infixToPostfix(const char *infix, char postfix[][MAX_LEN], int *count)
 				postfix[j][k++] = infix[i++];
 			}
 			postfix[j][k] = '\0';
-			j++; i--;
-		} 
+			j++;
+			i--;
+		}
 		else if (infix[i] == '(')
 		{
 			stack[++top] = '(';
@@ -105,6 +121,7 @@ void infixToPostfix(const char *infix, char postfix[][MAX_LEN], int *count)
 	{
 		sprintf(postfix[j++], "%c", stack[top--]);
 	}
+
 	*count = j;
 }
 

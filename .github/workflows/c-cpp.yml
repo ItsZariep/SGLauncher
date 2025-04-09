@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -19,6 +19,7 @@ jobs:
     - name: Set up variables
       id: date
       run: |
+       cd src
        echo "VVERSION=$(cat VERSION)" >> $GITHUB_ENV
        echo "GH_RELEASE_FILE=sglauncher-$(cat ./VERSION)-$(ldd --version | awk '/ldd/{print "-gnu-" $NF}')" >> $GITHUB_ENV
 
@@ -32,9 +33,10 @@ jobs:
 
     - name: Build with GCC
       run: |
+        cd src
         make sglauncher CC=gcc
         strip sglauncher
-        mv sglauncher ${{ env.VVERSION }}
+        mv sglauncher ../${{ env.GH_RELEASE_FILE }}
 
     - name: Release
       uses: softprops/action-gh-release@v2
