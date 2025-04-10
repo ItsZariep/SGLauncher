@@ -68,6 +68,11 @@ void on_item_activated(GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewColu
 
 void on_run_command(GtkWidget *widget, GdkEventButton *event, GtkWidget *input)
 {
+
+	gchar *closestr;
+	if (!closeterm)
+	{closestr="; read";}
+
 	const gchar *text = gtk_entry_get_text(GTK_ENTRY(input));
 	gchar *cmd, *binary_name, *program_path, *arguments;
 
@@ -104,9 +109,9 @@ void on_run_command(GtkWidget *widget, GdkEventButton *event, GtkWidget *input)
 		}
 
 		if (arguments != NULL)
-			cmd = g_strdup_printf("%s -e %s %s", terminal, binary_name, arguments);
+			cmd = g_strdup_printf("%s -e sh -c '%s %s %s'", terminal, binary_name, arguments, closestr);
 		else
-			cmd = g_strdup_printf("%s -e %s", terminal, binary_name);
+			cmd = g_strdup_printf("%s -e sh -c '%s %s'", terminal, binary_name, closestr);
 
 		run_command(applist, (gpointer)cmd);
 

@@ -167,6 +167,30 @@ void create_window(void)
 
 	entry = gtk_entry_new();
 
+	if (enablecommands)
+	{
+		GtkListStore *store = gtk_list_store_new(1, G_TYPE_STRING);
+
+		GList *executables = get_executables_from_path();
+		executables = g_list_sort(executables, (GCompareFunc)g_ascii_strcasecmp);
+
+		for (GList *l = executables; l != NULL; l = l->next)
+		{
+			gtk_list_store_insert_with_values(store, NULL, -1, 0, (gchar *)l->data, -1);
+			g_free(l->data);
+		}
+		g_list_free(executables);
+
+		GtkEntryCompletion *completion = gtk_entry_completion_new();
+		gtk_entry_completion_set_model(completion, GTK_TREE_MODEL(store));
+		gtk_entry_completion_set_text_column(completion, 0);
+		gtk_entry_completion_set_inline_completion(completion, TRUE);
+
+		gtk_entry_completion_set_match_func(completion, match_func, NULL, NULL);
+		gtk_entry_set_completion(GTK_ENTRY(entry), completion);
+		g_signal_connect(completion, "match-selected", G_CALLBACK(on_completion_match_selected), entry);
+	}
+
 	button = gtk_menu_button_new();
 	GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
 	GdkPixbuf *pixbuf = gtk_icon_theme_load_icon(icon_theme, program_icon, 64, GTK_ICON_LOOKUP_USE_BUILTIN, NULL);

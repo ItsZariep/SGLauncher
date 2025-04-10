@@ -4,6 +4,7 @@ Simple GTK Launcher
 ## Features:
 
 - [x] Show [system/user apps](https://codeberg.org/ItsZariep/SGLauncher/wiki/Application-detection)
+- [x] Search for binaries in `$PATH` 
 - [x] Quick access bar
 - [x] Search on web button
 - [x] Run in terminal button

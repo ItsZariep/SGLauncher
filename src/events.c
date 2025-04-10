@@ -178,3 +178,108 @@ gboolean applist_show_menu(GtkWidget *widget, GdkEventButton *event, gpointer us
 	return FALSE;
 }
 
+gboolean match_func(GtkEntryCompletion *completion, const gchar *key_string, GtkTreeIter *iter, gpointer user_data)
+{
+	GtkTreeModel *model = gtk_entry_completion_get_model(completion);
+	gchar *command;
+	gtk_tree_model_get(model, iter, 0, &command, -1);
+
+	if (key_string[0] != *commandsprefix)
+	{
+		g_free(command);
+		return FALSE;
+	}
+
+	const gchar *typed = key_string + 1;
+
+	gchar *command_lower = g_ascii_strdown(command, -1);
+	gchar *typed_lower = g_ascii_strdown(typed, -1);
+
+	gboolean result = g_str_has_prefix(command_lower, typed_lower);
+
+	g_free(command);
+	g_free(command_lower);
+	g_free(typed_lower);
+
+	return result;
+}
+
+gboolean is_symlink(const gchar *path)
+{
+	struct stat path_stat;
+	if (lstat(path, &path_stat) == 0)
+	{
+		return S_ISLNK(path_stat.st_mode);
+	}
+	return FALSE;
+}
+
+GList *get_executables_from_path(void)
+{
+	GList *executables = NULL;
+	GHashTable *seen = g_hash_table_new(g_str_hash, g_str_equal);
+
+	gchar *path = g_strdup(g_getenv("PATH"));
+	if (!path)
+	{
+		return NULL;
+	}
+
+	gchar **path_dirs = g_strsplit(path, ":", -1);
+
+	for (gint i = 0; path_dirs[i] != NULL; i++)
+	{
+		if (is_symlink(path_dirs[i]))
+		{
+			continue;
+		}
+
+		DIR *dir = opendir(path_dirs[i]);
+		if (!dir)
+		{
+			continue;
+		}
+
+		struct dirent *entry;
+		while ((entry = readdir(dir)) != NULL)
+		{
+			gchar *full_path = g_build_filename(path_dirs[i], entry->d_name, NULL);
+
+			if (g_file_test(full_path, G_FILE_TEST_IS_EXECUTABLE) &&
+				!g_file_test(full_path, G_FILE_TEST_IS_DIR))
+			{
+				if (!g_hash_table_contains(seen, entry->d_name))
+				{
+					executables = g_list_prepend(executables, g_strdup(entry->d_name));
+					g_hash_table_add(seen, g_strdup(entry->d_name));
+				}
+			}
+
+			g_free(full_path);
+		}
+
+		closedir(dir);
+	}
+
+	g_hash_table_destroy(seen);
+	g_strfreev(path_dirs);
+	g_free(path);
+
+	return executables;
+}
+
+gboolean on_completion_match_selected(GtkEntryCompletion *completion, GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY(user_data);
+
+	gchar *cmd;
+	gtk_tree_model_get(model, iter, 0, &cmd, -1);
+
+	gtk_entry_set_text(entry, cmd);
+
+	gtk_widget_activate(cmd_row);
+
+	g_free(cmd);
+
+	return TRUE;
+}

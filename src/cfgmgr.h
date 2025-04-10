@@ -39,6 +39,8 @@ extern GtkWidget *wmsizex;
 extern GtkWidget *wmsizey;
 extern GtkWidget *wusecustomcss;
 extern GtkWidget *wsearchrecursive;
+extern GtkWidget *wenablecommands;
+extern GtkWidget *wcommandsprefix;
 
 extern guint callconfig;
 

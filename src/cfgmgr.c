@@ -32,6 +32,8 @@ GtkWidget *wmsizex;
 GtkWidget *wmsizey;
 GtkWidget *wusecustomcss;
 GtkWidget *wsearchrecursive;
+GtkWidget *wenablecommands;
+GtkWidget *wcommandsprefix;
 GtkWidget *cancelbtn;
 GtkWidget *okbtn;
 
@@ -162,6 +164,13 @@ void showcfg(void)
 			gtk_widget_set_direction(wcloseterm, GTK_TEXT_DIR_RTL);
 		wsearchrecursive = gtk_check_button_new_with_label(_("Search entries recursively"));
 			gtk_widget_set_direction(wsearchrecursive, GTK_TEXT_DIR_RTL);
+		wenablecommands = gtk_check_button_new_with_label(_("Search for commands in PATH"));
+			gtk_widget_set_direction(wenablecommands, GTK_TEXT_DIR_RTL);
+		GtkWidget *wcommandsprefix_label = gtk_label_new(_("Commands character prefix"));
+			gtk_label_set_xalign(GTK_LABEL(wcommandsprefix_label), XA);
+			gtk_widget_set_margin_start(GTK_WIDGET(wcommandsprefix_label), XM);
+		wcommandsprefix = gtk_entry_new();
+			gtk_entry_set_max_length(GTK_ENTRY(wcommandsprefix), 1);
 		wshowscientific = gtk_check_button_new_with_label(_("Use scientific notation on math answers"));
 			gtk_widget_set_direction(wshowscientific, GTK_TEXT_DIR_RTL);
 		wignorenodisplay = gtk_check_button_new_with_label(_("Ignore \"NoDisplay\" apps"));
@@ -232,9 +241,12 @@ void showcfg(void)
 		gtk_grid_attach(GTK_GRID(tab_behavior), wcloseterm, 0, 0, 2, 1);
 		gtk_grid_attach(GTK_GRID(tab_behavior), wshowscientific, 0, 1, 2, 1);
 		gtk_grid_attach(GTK_GRID(tab_behavior), wsearchrecursive, 0, 2, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_behavior), wignorenodisplay, 0, 3, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreterminal, 0, 4, 2, 1);
-		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreonlyshowin, 0, 5, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wenablecommands, 0, 3, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wcommandsprefix_label, 0, 4, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wcommandsprefix, 1, 4, 1, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wignorenodisplay, 0, 5, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreterminal, 0, 6, 2, 1);
+		gtk_grid_attach(GTK_GRID(tab_behavior), wignoreonlyshowin, 0, 7, 2, 1);
 
 	GtkWidget *tab_window = gtk_grid_new();
 	gtk_grid_set_column_homogeneous(GTK_GRID(tab_window), TRUE);
@@ -274,6 +286,7 @@ void showcfg(void)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowofd), showofd);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowcalc), showcalc);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wshowscientific), showscientific);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wenablecommands), enablecommands);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wsearchrecursive), searchrecursive);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wignorenodisplay), ignorenodisplay);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wignoreterminal), ignoreterminal);
@@ -285,12 +298,7 @@ void showcfg(void)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wsingleinstance), singleinstance);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(wusecustomcss), usecustomcss);
 
-	gint length = strlen(cengine);
-	if (length > 0 && cengine[length - 1] == '\n')
-	{
-		cengine[length - 1] = '\0';
-	}
-
+	gtk_entry_set_text(GTK_ENTRY(wcommandsprefix), commandsprefix);
 	gtk_entry_set_text(GTK_ENTRY(webctm), cengine);
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(webcombo), wengine);
@@ -311,6 +319,8 @@ void showcfg(void)
 	g_signal_connect(wshowappicons, "clicked", G_CALLBACK(togglewidget), wiconsize);
 	g_signal_connect(wshowqa, "clicked", G_CALLBACK(togglewidget), wqasize);
 	g_signal_connect(wshowqa, "clicked", G_CALLBACK(togglewidget), wqasize_label);
+	g_signal_connect(wenablecommands, "clicked", G_CALLBACK(togglewidget), wcommandsprefix);
+	g_signal_connect(wenablecommands, "clicked", G_CALLBACK(togglewidget), wcommandsprefix_label);
 
 	g_signal_connect(defbtn, "clicked", G_CALLBACK(updateconf), GINT_TO_POINTER(1));
 	g_signal_connect(cancelbtn, "clicked", G_CALLBACK(on_cancelbutton_clicked), NULL);
@@ -351,6 +361,11 @@ void showcfg(void)
 	{
 		gtk_widget_hide(wentryonbottom);
 		gtk_widget_hide(whidewindeco);
+	}
+	if (!enablecommands)
+	{
+		gtk_widget_hide(wcommandsprefix_label);
+		gtk_widget_hide(wcommandsprefix);
 	}
 
 	g_signal_connect(cfgdialog, "destroy", G_CALLBACK(on_dialog_destroy), NULL);

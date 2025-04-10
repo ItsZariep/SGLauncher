@@ -4,6 +4,7 @@
 #include <gtk/gtk.h>
 #include "events.h"
 #include "mainwindow.h"
+#include "settings.h"
 
 void run_command(GtkWidget *widget, gpointer data);
 void on_item_activated(GtkTreeView *treeview, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);

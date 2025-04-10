@@ -12,6 +12,7 @@ extern const gchar *active_text;
 extern const gchar *home_dir;
 extern const gchar *config_file_path;
 extern const gchar *quick_dirs[];
+extern gchar *commandsprefix;
 extern gchar *pm;
 extern gchar *webengine;
 extern gchar *cwengine;
@@ -48,6 +49,7 @@ extern guint msizex;
 extern guint msizey;
 extern guint usecustomcss;
 extern guint searchrecursive;
+extern guint enablecommands;
 
 void updateconf(GtkButton *widget, gpointer user_data);
 void readconf(void);

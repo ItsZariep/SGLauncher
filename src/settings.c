@@ -13,6 +13,7 @@ gchar *cwengine;
 gchar cengine[ML];
 gchar *program_icon;
 gchar *ccloseterm;
+gchar *commandsprefix;
 
 guint wengine;
 guint mlayout;
@@ -44,6 +45,7 @@ guint msizey = 400;
 guint restarting = 0;
 guint usecustomcss = 1;
 guint searchrecursive = 1;
+guint enablecommands = 1;
 
 guint disableunfocus = 0;
 void updateconf(GtkButton *widget, gpointer user_data) 
@@ -54,6 +56,8 @@ void updateconf(GtkButton *widget, gpointer user_data)
 
 	const gchar *ncengine = NULL, *entry_text = gtk_entry_get_text(GTK_ENTRY(webctm)),
 		*placeholder_text = gtk_entry_get_placeholder_text(GTK_ENTRY(webctm));
+	gchar *commandsprefix_text = g_strdup(gtk_entry_get_text(GTK_ENTRY(wcommandsprefix)));
+
 
 	if (!g_key_file_load_from_file(config, config_file_path, G_KEY_FILE_KEEP_COMMENTS, &error))
 	{
@@ -93,6 +97,8 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Behavior", "closeterm", 0);
 		g_key_file_set_integer(config, "Behavior", "showscientific", 1);
 		g_key_file_set_integer(config, "Behavior", "searchrecursive", 1);
+		g_key_file_set_integer(config, "Behavior", "enablecommands", 1);
+		g_key_file_set_string(config, "Behavior", "commandsprefix", commandsprefix);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", 1);
 		g_key_file_set_integer(config, "Behavior", "ignoreterminal", 0);
 		g_key_file_set_integer(config, "Behavior", "ignoreonlyshowin", 0);
@@ -117,6 +123,8 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		entryonbottom = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wentryonbottom));
 		closeterm = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wcloseterm));
 		showscientific = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wshowscientific));
+		enablecommands = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wenablecommands));
+		commandsprefix = (commandsprefix_text && strlen(commandsprefix_text) > 0) ? commandsprefix_text : ">";
 		searchrecursive = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wsearchrecursive));
 		ignorenodisplay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignorenodisplay));
 		ignoreonlyshowin = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(wignoreonlyshowin));
@@ -152,6 +160,8 @@ void updateconf(GtkButton *widget, gpointer user_data)
 		g_key_file_set_integer(config, "Behavior", "closeterm", closeterm);
 		g_key_file_set_integer(config, "Behavior", "searchrecursive", searchrecursive);
 		g_key_file_set_integer(config, "Behavior", "showscientific", showscientific);
+		g_key_file_set_integer(config, "Behavior", "enablecommands", enablecommands);
+		g_key_file_set_string(config, "Behavior", "commandsprefix", commandsprefix);
 		g_key_file_set_integer(config, "Behavior", "ignorenodisplay", ignorenodisplay);
 		g_key_file_set_integer(config, "Behavior", "ignoreterminal", ignoreterminal);
 		g_key_file_set_integer(config, "Behavior", "ignoreonlyshowin", ignoreonlyshowin);
@@ -259,6 +269,12 @@ void readconf(void)
 
 		if (g_key_file_has_key(key_file, "Behavior", "showscientific", NULL))
 			showscientific = g_key_file_get_integer(key_file, "Behavior", "showscientific", NULL);
+
+		if (g_key_file_has_key(key_file, "Behavior", "enablecommands", NULL))
+			enablecommands = g_key_file_get_integer(key_file, "Behavior", "enablecommands", NULL);
+
+		if (g_key_file_has_key(key_file, "Behavior", "commandsprefix", NULL))
+			commandsprefix = g_key_file_get_string(key_file, "Behavior", "commandsprefix", NULL);
 
 		if (g_key_file_has_key(key_file, "Behavior", "ignorenodisplay", NULL))
 			ignorenodisplay = g_key_file_get_integer(key_file, "Behavior", "ignorenodisplay", NULL);

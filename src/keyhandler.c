@@ -124,6 +124,50 @@ gboolean on_key_release(GtkWidget *widget, GdkEventKey *event, gpointer user_dat
 		gchar *app_name = NULL;
 		const gchar *entry_text = gtk_entry_get_text(GTK_ENTRY(entry));
 
+		if (entry_text[0] == *commandsprefix)
+		{
+			const gchar *typed = entry_text + 1;
+
+			GtkEntryCompletion *completion = gtk_entry_get_completion(GTK_ENTRY(entry));
+			GtkTreeModel *model = gtk_entry_completion_get_model(completion);
+
+			GtkTreeIter iter;
+			gboolean found_match = FALSE;
+
+			if (gtk_tree_model_get_iter_first(model, &iter))
+			{
+				do
+				{
+					gchar *cmd;
+					gtk_tree_model_get(model, &iter, 0, &cmd, -1);
+
+					gchar *cmd_lower = g_ascii_strdown(cmd, -1);
+					gchar *typed_lower = g_ascii_strdown(typed, -1);
+
+					if (g_str_has_prefix(cmd_lower, typed_lower))
+					{
+						gchar *new_text = g_strconcat(">", cmd, NULL);
+						gtk_entry_set_text(GTK_ENTRY(entry), cmd);
+						g_free(new_text);
+
+						found_match = TRUE;
+
+						g_free(cmd_lower);
+						g_free(typed_lower);
+						g_free(cmd);
+						gtk_widget_activate(cmd_row);
+						break;
+					}
+
+					g_free(cmd_lower);
+					g_free(typed_lower);
+					g_free(cmd);
+				}
+				while (gtk_tree_model_iter_next(model, &iter));
+			}
+			return TRUE;
+		}
+
 		if (gtk_tree_model_get_iter_first(model, &iter))
 		{
 			gtk_tree_model_get(model, &iter, 0, &app_name, -1);
