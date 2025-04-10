@@ -185,12 +185,14 @@ void updateconf(GtkButton *widget, gpointer user_data)
 
 	restarting = (sgcfg == 0) ? 1 : 0;
 
+	disableunfocus = 1;
 	if (reset == 0)
 	{
 		gtk_widget_destroy(cfgdialog);
+		gtk_widget_set_sensitive(submenu_item_settings, TRUE);
+		disableunfocus = 0;
 	}
 
-	disableunfocus = 1;
 	exit_window(window);
 	gtk_window_present(GTK_WINDOW(cfgdialog));
 	gtk_widget_grab_focus(cfgdialog);
@@ -274,7 +276,13 @@ void readconf(void)
 			enablecommands = g_key_file_get_integer(key_file, "Behavior", "enablecommands", NULL);
 
 		if (g_key_file_has_key(key_file, "Behavior", "commandsprefix", NULL))
+		{
 			commandsprefix = g_key_file_get_string(key_file, "Behavior", "commandsprefix", NULL);
+		}
+		else
+		{
+			commandsprefix = g_strdup(">");
+		}
 
 		if (g_key_file_has_key(key_file, "Behavior", "ignorenodisplay", NULL))
 			ignorenodisplay = g_key_file_get_integer(key_file, "Behavior", "ignorenodisplay", NULL);

@@ -80,6 +80,7 @@ void on_dialog_destroy(GtkWidget *widget, gpointer data)
 	disableunfocus = 0;
 	callconfig = 0;
 	ismoving = 0;
+	gtk_widget_set_sensitive(submenu_item_settings, TRUE);
 }
 
 void togglewidget(GtkWidget *input, gpointer data)
@@ -97,6 +98,8 @@ void togglewidget(GtkWidget *input, gpointer data)
 
 void showcfg(void)
 {
+	gtk_widget_set_sensitive(submenu_item_settings, FALSE);
+
 	callconfig = 1;
 	ismoving = 1;
 	cfgdialog = gtk_window_new(GTK_WINDOW_TOPLEVEL);

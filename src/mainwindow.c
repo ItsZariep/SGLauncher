@@ -210,6 +210,7 @@ void create_window(void)
 	{
 		submenu_item_settings = gtk_menu_item_new_with_label(_("Settings"));
 		gtk_menu_shell_append(GTK_MENU_SHELL(submenu), submenu_item_settings);
+		if (disableunfocus){gtk_widget_set_sensitive(submenu_item_settings, FALSE);}
 	}
 
 	submenu_item_help = gtk_menu_item_new_with_label(_("Help"));

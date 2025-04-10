@@ -23,6 +23,7 @@ extern GtkWidget *cmd_row;
 extern GtkWidget *xdg_row;
 extern GtkWidget *web_row;
 extern GtkWidget *entry;
+extern GtkWidget *submenu_item_settings;
 
 void on_submenu_item_about_selected(GtkMenuItem *menuitem, gpointer userdata);
 void on_submenu_item_onlinehelp_selected(GtkMenuItem *menuitem, gpointer userdata);
