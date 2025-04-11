@@ -97,8 +97,6 @@ void loadcss(int load)
 	}
 }
 
-
-
 void on_submenu_item_about_selected(GtkMenuItem *menuitem, gpointer userdata)
 {
 	dialog = gtk_about_dialog_new();
@@ -230,8 +228,25 @@ void create_window(void)
 
 	gtk_menu_button_set_popup(GTK_MENU_BUTTON(button), submenu);
 
-
 	GtkWidget *box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+
+	if (geteuid() == 0)
+	{
+		GtkWidget *rootwarning = gtk_label_new(_("WARNING: You are about to run programs as root"));
+		GtkWidget *info_bar;
+		GtkWidget *content_area;
+
+		info_bar = gtk_info_bar_new();
+		gtk_info_bar_set_message_type(GTK_INFO_BAR(info_bar), GTK_MESSAGE_WARNING);
+
+		content_area = gtk_info_bar_get_content_area(GTK_INFO_BAR(info_bar));
+
+		gtk_container_add(GTK_CONTAINER(content_area), rootwarning);
+
+		gtk_box_pack_start(GTK_BOX(box), info_bar, TRUE, TRUE, 0);
+
+	}
+
 	if (!nocsd)
 	{
 		gtk_window_set_titlebar(GTK_WINDOW(window), headerbar);
@@ -389,7 +404,8 @@ void create_window(void)
 	}
 	else
 	{
-		gtk_grid_attach(GTK_GRID(grid), qa, 0, 0, 1, 1);
+		gtk_grid_attach(GTK_GRID(grid), box, 0, 0, 1, 1);
+		gtk_grid_attach(GTK_GRID(grid), qa, 0, 1, 1, 1);
 		gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 2, 1, 1);
 	}
 

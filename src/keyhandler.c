@@ -66,35 +66,38 @@ void on_entry_changed(GtkEntry *target, FilterData *filterdata)
 
 	if (filterdata->filter_text != NULL)
 	{
-		if (strlen(filterdata->filter_text) > 0 && strpbrk(filterdata->filter_text, "0123456789") != NULL)
+		if (strlen(filterdata->filter_text) > 0)
 		{
-			double minscientific = 999999;
-			double result = evaluate((char*)filterdata->filter_text);
-			char buffer[256];
-			if (result < minscientific)
-			{
-				snprintf(buffer, 256, "%g", result);
-			}
-			else if (result > minscientific && showscientific == 0)
-			{
-				snprintf(buffer, 256, "%f", result);
-			}
-			else if (result > minscientific && showscientific == 1)
-			{
-				snprintf(buffer, 256, "%g", result);
-			}
-
-			const gchar *message = isnan(result) ? "Invalid operation" : buffer;
-			gtk_label_set_text(GTK_LABEL(manswer), message);
-
-			gtk_widget_show(mathtext);
-			gtk_widget_show(math);
-			gtk_widget_show(manswer);
 			gtk_widget_show(listbox2);
+			if (strpbrk(filterdata->filter_text, "0123456789") != NULL)
+			{
+				double minscientific = 999999;
+				double result = evaluate((char*)filterdata->filter_text);
+				char buffer[256];
+				if (result < minscientific)
+				{
+					snprintf(buffer, 256, "%g", result);
+				}
+				else if (result > minscientific && showscientific == 0)
+				{
+					snprintf(buffer, 256, "%f", result);
+				}
+				else if (result > minscientific && showscientific == 1)
+				{
+					snprintf(buffer, 256, "%g", result);
+				}
+
+				const gchar *message = isnan(result) ? "Invalid operation" : buffer;
+				gtk_label_set_text(GTK_LABEL(manswer), message);
+
+				gtk_widget_show(mathtext);
+				gtk_widget_show(math);
+				gtk_widget_show(manswer);
+			}
 		}
 		else
 		{
-			gtk_widget_show(mathtext);
+			gtk_widget_hide(mathtext);
 			gtk_widget_hide(math);
 			gtk_widget_hide(manswer);
 			gtk_widget_hide(listbox2);
