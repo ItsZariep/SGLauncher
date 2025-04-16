@@ -1,6 +1,9 @@
 # SGLauncher
 Simple GTK Launcher
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/sglauncher.svg)](https://repology.org/project/sglauncher/versions)
+
+
 ## Features:
 
 - [x] Show [system/user apps](https://codeberg.org/ItsZariep/SGLauncher/wiki/Application-detection)
@@ -15,7 +18,7 @@ Simple GTK Launcher
 - [x] [Custom CSS styling](https://codeberg.org/ItsZariep/SGLauncher/wiki/Styling)
 - [x] Simple configuration tool
 
- See all available settings in the [documentation](https://codeberg.org/ItsZariep/SGLauncher/wiki/Settings)
+ See all available settings in the [documentation](https://itszariep.codeberg.page/projects/sglauncher/wiki.html)
 
 ## Build:
 - Clone:
