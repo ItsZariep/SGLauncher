@@ -144,7 +144,7 @@ void showcfg(void)
 			gtk_widget_set_direction(wshowda, GTK_TEXT_DIR_RTL);
 		wentryonbottom = gtk_check_button_new_with_label(_("Search entry on bottom"));
 			gtk_widget_set_direction(wentryonbottom, GTK_TEXT_DIR_RTL);
-		wshowqa = gtk_check_button_new_with_label(_("Show quick actions"));
+		wshowqa = gtk_check_button_new_with_label(_("Show quick access"));
 			gtk_widget_set_direction(wshowqa, GTK_TEXT_DIR_RTL);
 		wuseiconview = gtk_check_button_new_with_label(_("Use icon view"));
 			gtk_widget_set_direction(wuseiconview, GTK_TEXT_DIR_RTL);
@@ -157,7 +157,7 @@ void showcfg(void)
 				gtk_widget_set_margin_start(GTK_WIDGET(wiconsize_label), XM);
 		GtkAdjustment *qa_adjustment = gtk_adjustment_new(1, 0, 1024, 1, 1, 0);
 			wqasize = gtk_spin_button_new(qa_adjustment, 1, 0);
-			GtkWidget *wqasize_label = gtk_label_new(_("Quick actions size"));
+			GtkWidget *wqasize_label = gtk_label_new(_("quick access size"));
 				gtk_label_set_xalign(GTK_LABEL(wqasize_label), XA);
 				gtk_widget_set_margin_start(GTK_WIDGET(wqasize_label), XM);
 		wusecustomcss = gtk_check_button_new_with_label(_("Use custom CSS"));

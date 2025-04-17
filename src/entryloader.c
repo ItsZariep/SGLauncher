@@ -7,7 +7,6 @@ GtkCellRenderer *renderer = NULL;
 GtkTreeModelSort *sorted_model = NULL;
 GtkTreeModelFilter *filter_model = NULL;
 
-
 gint gtk_tree_iter_compare_func(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer user_data)
 {
 	GtkTreeIter parent_a, parent_b;
@@ -162,6 +161,32 @@ void search_directory_recursively(const gchar *dir_path, GtkTreeStore *store, Gt
 			gtk_tree_store_set(store, &app_iter, 0, app_name, 1, toexec, 2, showappicons ? icon_pixbuf : NULL, 3, merged_data, 4, app_comment, 5, dir_name, 6, full_path, -1);
 			gtk_tree_view_set_tooltip_column(GTK_TREE_VIEW(applist), 4);
 			gtk_icon_view_set_tooltip_column(GTK_ICON_VIEW(iconview), 4);
+
+			if (showda)
+			{
+			// Handling Desktop Actions
+				gchar **groups = g_key_file_get_groups(key_file, NULL);
+				for (int j = 0; groups[j] != NULL; j++)
+				{
+					if (g_str_has_prefix(groups[j], "Desktop Action"))
+					{
+						gchar *action_name = g_key_file_get_locale_string(key_file, groups[j], "Name", NULL, NULL);
+						gchar *exec_value = g_key_file_get_string(key_file, groups[j], "Exec", NULL);
+
+						if (action_name && exec_value)
+						{
+							GtkTreeIter action_iter;
+							gtk_tree_store_append(store, &action_iter, &app_iter);
+							gchar *action_merged_data = g_strdup_printf("%s%s%s", action_name, exec_value, icon_name);
+							gtk_tree_store_set(store, &action_iter, 0, action_name, 1, exec_value, 2, icon_pixbuf, 3, action_merged_data, 4, app_comment, 5, dir_name, 6, full_path, -1);
+							g_free(action_name);
+							g_free(exec_value);
+							g_free(action_merged_data);
+						}
+					}
+				}
+			g_strfreev(groups);
+			}
 
 			g_free(app_name);
 			g_free(icon_name);

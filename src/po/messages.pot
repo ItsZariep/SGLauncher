@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 18:24-0600\n"
+"POT-Creation-Date: 2025-04-16 23:39-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,159 +17,175 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cfgmgr.c:107
+#: cfgmgr.c:114
 msgid "Search Engine"
 msgstr ""
 
-#: cfgmgr.c:114
+#: cfgmgr.c:121
 msgid "Custom"
 msgstr ""
 
-#: cfgmgr.c:115
+#: cfgmgr.c:122
 msgid "Search URL"
 msgstr ""
 
-#: cfgmgr.c:119
+#: cfgmgr.c:126
 msgid "Show \"Run in Terminal\" entry"
 msgstr ""
 
-#: cfgmgr.c:121
+#: cfgmgr.c:128
 msgid "Show \"Search on Web\" entry"
 msgstr ""
 
-#: cfgmgr.c:123
+#: cfgmgr.c:130
 msgid "Show \"Open File/Directory\" entry"
 msgstr ""
 
-#: cfgmgr.c:125
+#: cfgmgr.c:132
 msgid "Show Math answer when numbers are typed"
 msgstr ""
 
-#: cfgmgr.c:128
+#: cfgmgr.c:135
 msgid "Menu layout"
 msgstr ""
 
-#: cfgmgr.c:132
+#: cfgmgr.c:139
 msgid "Horizontal - Apps at top"
 msgstr ""
 
-#: cfgmgr.c:133
+#: cfgmgr.c:140
 msgid "Horizontal - Apps at bottom"
 msgstr ""
 
-#: cfgmgr.c:134
+#: cfgmgr.c:141
 msgid "Vertical - Apps at left"
 msgstr ""
 
-#: cfgmgr.c:135
+#: cfgmgr.c:142
 msgid "Vertical - Apps at right"
 msgstr ""
 
-#: cfgmgr.c:136
+#: cfgmgr.c:143
 msgid "Show Desktop actions"
 msgstr ""
 
-#: cfgmgr.c:138
+#: cfgmgr.c:145
 msgid "Search entry on bottom"
 msgstr ""
 
-#: cfgmgr.c:140
-msgid "Show quick actions"
+#: cfgmgr.c:147
+msgid "Show quick access"
 msgstr ""
 
-#: cfgmgr.c:142
+#: cfgmgr.c:149
 msgid "Use icon view"
 msgstr ""
 
-#: cfgmgr.c:144
+#: cfgmgr.c:151
 msgid "Show app icons"
 msgstr ""
 
-#: cfgmgr.c:148
+#: cfgmgr.c:155
 msgid "Icon size"
 msgstr ""
 
-#: cfgmgr.c:153
-msgid "Quick actions size"
-msgstr ""
-
-#: cfgmgr.c:157
-msgid "Close terminal when process finishes"
-msgstr ""
-
-#: cfgmgr.c:159
-msgid "Use scientific notation on math answers"
-msgstr ""
-
-#: cfgmgr.c:161
-msgid "Ignore \"NoDisplay\" apps"
+#: cfgmgr.c:160
+msgid "quick access size"
 msgstr ""
 
 #: cfgmgr.c:163
-msgid "Ignore Terminal apps"
+msgid "Use custom CSS"
 msgstr ""
 
-#: cfgmgr.c:165
-msgid "Ignore \"OnlyShowIn\" Value"
+#: cfgmgr.c:166
+msgid "Close terminal when process finishes"
 msgstr ""
 
 #: cfgmgr.c:168
-msgid "Window width"
+msgid "Search entries recursively"
 msgstr ""
 
-#: cfgmgr.c:173
-msgid "Window height"
+#: cfgmgr.c:170
+msgid "Search for commands in PATH"
 msgstr ""
 
-#: cfgmgr.c:178
-msgid "Use CSD Decoration"
+#: cfgmgr.c:172
+msgid "Commands character prefix"
 msgstr ""
 
-#: cfgmgr.c:180
-msgid "Hide CSD Title"
+#: cfgmgr.c:177
+msgid "Use scientific notation on math answers"
 msgstr ""
 
-#: cfgmgr.c:182
-msgid "Disable WM Decoration"
+#: cfgmgr.c:179
+msgid "Ignore \"NoDisplay\" apps"
 msgstr ""
 
-#: cfgmgr.c:184
-msgid "Exit when unfocused"
+#: cfgmgr.c:181
+msgid "Ignore Terminal apps"
+msgstr ""
+
+#: cfgmgr.c:183
+msgid "Ignore \"OnlyShowIn\" Value"
 msgstr ""
 
 #: cfgmgr.c:186
-msgid "Allow only a single instance"
-msgstr ""
-
-#: cfgmgr.c:189
-msgid "Default"
-msgstr ""
-
-#: cfgmgr.c:190
-msgid "OK"
+msgid "Window width"
 msgstr ""
 
 #: cfgmgr.c:191
-msgid "Cancel"
-msgstr ""
-
-#: cfgmgr.c:192
-msgid "Apply"
+msgid "Window height"
 msgstr ""
 
 #: cfgmgr.c:196
+msgid "Use CSD Decoration"
+msgstr ""
+
+#: cfgmgr.c:198
+msgid "Hide CSD Title"
+msgstr ""
+
+#: cfgmgr.c:200
+msgid "Disable WM Decoration"
+msgstr ""
+
+#: cfgmgr.c:202
+msgid "Exit when unfocused"
+msgstr ""
+
+#: cfgmgr.c:204
+msgid "Allow only a single instance"
+msgstr ""
+
+#: cfgmgr.c:207
+msgid "Default"
+msgstr ""
+
+#: cfgmgr.c:208
+msgid "OK"
+msgstr ""
+
+#: cfgmgr.c:209
+msgid "Cancel"
+msgstr ""
+
+#: cfgmgr.c:210
+msgid "Apply"
+msgstr ""
+
+#: cfgmgr.c:214
 msgid "Elements"
 msgstr ""
 
-#: cfgmgr.c:211
+#: cfgmgr.c:227
 msgid "View"
 msgstr ""
 
-#: cfgmgr.c:226
+#: cfgmgr.c:243
 msgid "Behavior"
 msgstr ""
 
-#: cfgmgr.c:235
+#: cfgmgr.c:256
 msgid "Window"
 msgstr ""
 
@@ -189,47 +205,51 @@ msgstr ""
 msgid "Add to Quick access"
 msgstr ""
 
-#: mainwindow.c:49
+#: mainwindow.c:109
 msgid "Project Website"
 msgstr ""
 
-#: mainwindow.c:61
+#: mainwindow.c:120
 msgid "Documentation available on Codeberg"
 msgstr ""
 
-#: mainwindow.c:64
+#: mainwindow.c:123
 msgid "Documentation available at:"
 msgstr ""
 
-#: mainwindow.c:126
+#: mainwindow.c:209
 msgid "Settings"
 msgstr ""
 
-#: mainwindow.c:130
+#: mainwindow.c:214
 msgid "Help"
 msgstr ""
 
-#: mainwindow.c:133
+#: mainwindow.c:217
 msgid "Online help"
 msgstr ""
 
-#: mainwindow.c:134
+#: mainwindow.c:218
 msgid "About"
 msgstr ""
 
-#: mainwindow.c:201
+#: mainwindow.c:235
+msgid "WARNING: You are about to run programs as root"
+msgstr ""
+
+#: mainwindow.c:301
 msgid "Run in Terminal"
 msgstr ""
 
-#: mainwindow.c:212
+#: mainwindow.c:312
 msgid "Search on Web"
 msgstr ""
 
-#: mainwindow.c:223
+#: mainwindow.c:323
 msgid "Open file/directory"
 msgstr ""
 
-#: mainwindow.c:261
+#: mainwindow.c:358
 msgid "Math Answer: "
 msgstr ""
 
