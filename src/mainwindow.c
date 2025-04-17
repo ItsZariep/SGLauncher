@@ -15,6 +15,7 @@ GtkWidget *manswer;
 GtkWidget *mathtext;
 GtkWidget *listbox2;
 GtkWidget *qa;
+GtkWidget *qas;
 GtkWidget *row;
 GtkWidget *headerbar;
 GtkWidget *image;
@@ -349,8 +350,8 @@ void create_window(void)
 	gtk_container_add(GTK_CONTAINER(window), grid);
 	mathtext = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
 
-		GtkWidget *qas = gtk_scrolled_window_new(NULL, NULL);
-	gtk_container_set_border_width(GTK_CONTAINER(qas), 10);
+	qas = gtk_scrolled_window_new(NULL, NULL);
+	gtk_container_set_border_width(GTK_CONTAINER(qas), 0);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(qas), GTK_POLICY_AUTOMATIC, GTK_POLICY_NEVER);
 	qa = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
 	gtk_container_add(GTK_CONTAINER(qas), qa);
@@ -399,19 +400,19 @@ void create_window(void)
 		{
 			gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 5, 1, 1);
 			gtk_grid_attach(GTK_GRID(grid), box, 0, 6, 1, 1);
-			gtk_grid_attach(GTK_GRID(grid), qas, 0, 7, 1, 1);
+			if (showqa) {gtk_grid_attach(GTK_GRID(grid), qas, 0, 7, 1, 1);}
 		}
 		else
 		{
 			gtk_grid_attach(GTK_GRID(grid), box, 0, 0, 1, 1);
-			gtk_grid_attach(GTK_GRID(grid), qas, 0, 1, 1, 1);
+			if (showqa) {gtk_grid_attach(GTK_GRID(grid), qas, 0, 1, 1, 1);}
 			gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 2, 1, 1);
 		}
 	}
 	else
 	{
 		gtk_grid_attach(GTK_GRID(grid), box, 0, 0, 1, 1);
-		gtk_grid_attach(GTK_GRID(grid), qas, 0, 1, 1, 1);
+		if (showqa) {gtk_grid_attach(GTK_GRID(grid), qas, 0, 1, 1, 1);}
 		gtk_grid_attach(GTK_GRID(grid), mathtext, 0, 2, 1, 1);
 	}
 
@@ -446,6 +447,7 @@ void create_window(void)
 		gtk_widget_show_all(window);
 		gtk_widget_hide(mathtext);
 		gtk_widget_hide(listbox2);
+		gtk_widget_hide(qas);
 		if (showcmd == 0)
 		{
 			gtk_widget_hide(cmd_row);

@@ -257,6 +257,17 @@ void load_quickaccess(void)
 			}
 		}
 
+		if (icon_pixbuf)
+		{
+			GdkPixbuf *resized_icon = gdk_pixbuf_scale_simple(icon_pixbuf, qasize, qasize, GDK_INTERP_BILINEAR);
+			g_object_unref(icon_pixbuf);
+			icon_pixbuf = resized_icon;
+		}
+		else
+		{
+			icon_pixbuf = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "application-x-executable", qasize, 0, NULL);
+		}
+
 		if (!icon_pixbuf)
 		{
 			g_warning("Failed to load icon: %s, error: %s", icon_name, error ? error->message : "unknown error");
@@ -364,6 +375,7 @@ void load_quickaccess(void)
 		g_free(toexec);
 		g_free(path);
 		g_key_file_free(key_file);
+		gtk_widget_show(qas);
 	}
 
 	g_list_free_full(file_list, g_free);

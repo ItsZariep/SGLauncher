@@ -13,6 +13,7 @@ extern GtkWidget *window;
 extern GtkWidget *iconview;
 extern GtkWidget *listbox2;
 extern GtkWidget *qa;
+extern GtkWidget *qas;
 extern GtkWidget *manswer;
 extern GtkWidget *mathtext;
 extern GtkWidget *math;
