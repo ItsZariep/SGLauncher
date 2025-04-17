@@ -3,6 +3,15 @@ Simple GTK Launcher
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/sglauncher.svg)](https://repology.org/project/sglauncher/versions)
 
+<details>
+
+<summary><img src="https://translate.codeberg.org/widget/sglauncher/status-badge.png" alt="Status Badge"></summary>
+
+[![Packaging status](https://translate.codeberg.org/widget/sglauncher/multi-green.svg)](https://translate.codeberg.org/engage/sglauncher/)
+
+</details>
+
+
 
 ## Features:
 
