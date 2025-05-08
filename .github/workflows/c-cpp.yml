@@ -5,9 +5,9 @@ permissions:
 
 on:
   push:
-    branches: [ "stable" ]
+    branches: [ "test-ci" ]
   pull_request:
-    branches: [ "stable" ]
+    branches: [ "test-ci" ]
 
 jobs:
   build:
